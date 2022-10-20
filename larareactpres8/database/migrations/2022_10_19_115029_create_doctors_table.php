@@ -16,7 +16,7 @@ class CreateDoctorsTable extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',50);
-            $table->string('email',20)->nullable();;
+            $table->string('email',20)->nullable();
             $table->string('phone',20)->nullable();;
             $table->integer('department_id')->unsigned();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('RESTRICT');
@@ -24,10 +24,10 @@ class CreateDoctorsTable extends Migration
             $table->foreign('designation_id')->references('id')->on('designations')->onDelete('RESTRICT');
             $table->date('dob')->nullable();
             $table->char('blood_group',30)->nullable();
-            $table->string('about_me',250)->nullable();;
-            $table->string('image',200)->nullable();;
-            $table->string('experience',200)->nullable();;
-            $table->string('speciality',200)->nullable();;
+            $table->string('about_me',250)->nullable();
+            $table->string('image',200)->nullable();
+            $table->string('experience',200)->nullable();
+            $table->string('speciality',200)->nullable();
             $table->string('degrees',200);            
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('RESTRICT');

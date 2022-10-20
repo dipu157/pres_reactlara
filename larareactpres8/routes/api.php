@@ -10,6 +10,14 @@ use App\Http\Controllers\Common\ChamberController;
 use App\Http\Controllers\Common\DepartmentController;
 use App\Http\Controllers\Common\DesignationController;
 use App\Http\Controllers\Common\DoctorController;
+use App\Http\Controllers\Common\PatientController;
+
+
+use App\Http\Controllers\Medicine\GenericController;
+use App\Http\Controllers\Medicine\MedicineController;
+use App\Http\Controllers\Medicine\MedicineTypeController;
+use App\Http\Controllers\Medicine\StrengthController;
+use App\Http\Controllers\Medicine\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +53,31 @@ use App\Http\Controllers\Common\DoctorController;
  Route::post('/storedesignation',[DesignationController::class, 'storedesignation']);
 
  Route::get('/getalldoctors',[DoctorController::class, 'allDoctors']);
+ Route::post('/addnewdoctor',[DoctorController::class, 'addDoctor']);
+ Route::post('/updatedoctor/{id}',[DoctorController::class, 'updateDoctor']);
+
+
+ Route::get('/getallpatients',[PatientController::class, 'allPatients']);
+ Route::post('/addnewpatient',[PatientController::class, 'addPatient']);
+ Route::post('/updatepatient/{id}',[PatientController::class, 'updatePatient']);
+
+
+ Route::get('/getGenerics',[GenericController::class, 'allGenerics']);
+ Route::post('/addgeneric',[GenericController::class, 'addGeneric']);
+ Route::post('/updategeneric/{id}',[GenericController::class, 'updateGeneric']);
+
+ Route::get('/getMedicineTypes',[MedicineTypeController::class, 'allMedicineTypes']);
+ Route::post('/addMedicineTypes',[MedicineTypeController::class, 'addMedicineTypes']);
+ Route::post('/updateMedicineTypes/{id}',[MedicineTypeController::class, 'updateMedicineTypes']);
+
+ Route::get('/getStrength',[StrengthController::class, 'allStrength']);
+ Route::post('/addStrength',[StrengthController::class, 'addStrength']);
+ Route::post('/updateStrength/{id}',[StrengthController::class, 'updateStrength']);
+
+ Route::get('/getsupplier',[SupplierController::class, 'allSupplier']);
+ Route::post('/addsupplier',[SupplierController::class, 'addSupplier']);
+ Route::post('/updatesupplier/{id}',[SupplierController::class, 'updateSupplier']);
+
+ Route::get('/getMedicines',[MedicineController::class, 'allMedicine']);
+ Route::post('/AddMedicines',[MedicineController::class, 'addMedicine']);
+ Route::post('/updateMedicines/{id}',[MedicineController::class, 'updateMedicine']);
