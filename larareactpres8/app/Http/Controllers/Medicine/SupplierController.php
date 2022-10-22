@@ -17,31 +17,47 @@ class SupplierController extends Controller
 
     public function addSupplier(Request $request)
     {
-        $name = $request->input('name');
-        $email = $request->input('email');
-        $phone = $request->input('phone');
-        $address = $request->input('address');
-        $contact_person_details = $request->input('contact_person_details');
-        $user_id = $request->input('user_id');
 
-        $result = Supplier::insert([
+        try{
 
-            'supplier_code' => 'S'. rand(1000,5000),
-            'name' => $name,
-            'email' => $email,
-            'phone' => $phone,
-            'address' => $address,
-            'contact_person_details' => $contact_person_details,
-            'user_id' => $user_id,
-        ]);
+            $name = $request->input('name');
+            $email = $request->input('email');
+            $phone = $request->input('phone');
+            $address = $request->input('address');
+            $contact_person_details = $request->input('contact_person_details');
+            $user_id = $request->input('user_id');
 
-        return $result;
+            $result = Supplier::insert([
+
+                'supplier_code' => 'S'. rand(1000,5000),
+                'name' => $name,
+                'email' => $email,
+                'phone' => $phone,
+                'address' => $address,
+                'contact_person_details' => $contact_person_details,
+                'user_id' => $user_id,
+            ]);
+
+            return response([
+                'message' => "Successfully Added"
+            ],200); // States Code
+
+        }
+        catch(Exception $exception){
+            return response([
+                'message' => $exception->getMessage()
+            ],400);
+        }
+
+
     }
 
     public function updateSupplier(Request $request)
     {
+        try{
+
         $id = $request->id;
-        
+
         $name = $request->input('name');
         $email = $request->input('email');
         $phone = $request->input('phone');
@@ -59,6 +75,17 @@ class SupplierController extends Controller
             'user_id' => $user_id,
         ]);
 
-        return $result;
+            return response([
+                'message' => "Successfully Edited"
+            ],200); // States Code
+
+        }
+        catch(Exception $exception){
+            return response([
+                'message' => $exception->getMessage()
+            ],400);
+        }
+
+
     }
 }

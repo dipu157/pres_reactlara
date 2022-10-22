@@ -17,33 +17,54 @@ class MedicineTypeController extends Controller
 
     public function addMedicineTypes(Request $request)
     {
-        $name = $request->input('name');
-        $short_name = $request->input('short_name');
-        $user_id = $request->input('user_id');
+        try{
 
-        $result = MedicineType::insert([
-            'name' => $name,
-            'short_name' => $short_name,
-            'user_id' => $user_id,
-        ]);
+            $name = $request->input('name');
+            $short_name = $request->input('short_name');
+            $user_id = $request->input('user_id');
 
-        return $result;
+            $result = MedicineType::insert([
+                'name' => $name,
+                'short_name' => $short_name,
+                'user_id' => $user_id,
+            ]);
+            return response([
+                'message' => "Successfully Added"
+            ],200); // States Code
+
+        }
+        catch(Exception $exception){
+            return response([
+                'message' => $exception->getMessage()
+            ],400);
+        }
     }
 
     public function updateMedicineTypes(Request $request)
     {
-        $id = $request->id;
-        
-        $name = $request->input('name');
-        $short_name = $request->input('short_name');
-        $user_id = $request->input('user_id');
+        try{
 
-        $result = MedicineType::where('id', $id)->update([
-            'name' => $name,
-            'short_name' => $short_name,
-            'user_id' => $user_id,
-        ]);
+            $id = $request->id;
 
-        return $result;
+            $name = $request->input('name');
+            $short_name = $request->input('short_name');
+            $user_id = $request->input('user_id');
+
+            $result = MedicineType::where('id', $id)->update([
+                'name' => $name,
+                'short_name' => $short_name,
+                'user_id' => $user_id,
+            ]);
+
+            return response([
+                'message' => "Successfully Edited"
+            ],200); // States Code
+
+        }
+        catch(Exception $exception){
+            return response([
+                'message' => $exception->getMessage()
+            ],400);
+        }
     }
 }

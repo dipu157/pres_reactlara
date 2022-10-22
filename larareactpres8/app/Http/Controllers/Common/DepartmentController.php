@@ -18,14 +18,27 @@ class DepartmentController extends Controller
     public function storedepartment(Request $request)
     {
 
-         $result = Department::insert([
-            'department_code' => rand(1000,5000),
-            'name' => $request->input('name'),
-            'short_name' => $request->input('short_name'),
-            'description' => $request->input('description'),
-            'user_id' => $request->input('user_id'),
+        try{
 
-         ]);
-         return $result;
+            $result = Department::insert([
+                'department_code' => rand(1000,5000),
+                'name' => $request->input('name'),
+                'short_name' => $request->input('short_name'),
+                'description' => $request->input('description'),
+                'user_id' => $request->input('user_id'),
+
+             ]);
+
+            return response([
+                'message' => "Successfully Added"
+            ],200); // States Code
+
+        }
+        catch(Exception $exception){
+            return response([
+                'message' => $exception->getMessage()
+            ],400);
+        }
+
     }
 }

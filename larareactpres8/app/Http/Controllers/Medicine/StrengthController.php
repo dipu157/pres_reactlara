@@ -17,6 +17,8 @@ class StrengthController extends Controller
 
     public function addStrength(Request $request)
     {
+        try{
+
         $name = $request->input('name');
         $user_id = $request->input('user_id');
 
@@ -25,13 +27,24 @@ class StrengthController extends Controller
             'user_id' => $user_id,
         ]);
 
-        return $result;
+            return response([
+                'message' => "Successfully Added"
+            ],200); // States Code
+
+        }
+        catch(Exception $exception){
+            return response([
+                'message' => $exception->getMessage()
+            ],400);
+        }
+
     }
 
     public function updateStrength(Request $request)
     {
-        $id = $request->id;
-        
+        try{
+            $id = $request->id;
+
         $name = $request->input('name');
         $user_id = $request->input('user_id');
 
@@ -40,6 +53,16 @@ class StrengthController extends Controller
             'user_id' => $user_id,
         ]);
 
-        return $result;
+            return response([
+                'message' => "Successfully Edited"
+            ],200); // States Code
+
+        }
+        catch(Exception $exception){
+            return response([
+                'message' => $exception->getMessage()
+            ],400);
+        }
+
     }
 }

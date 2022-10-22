@@ -11,6 +11,9 @@ use App\Http\Controllers\Common\DepartmentController;
 use App\Http\Controllers\Common\DesignationController;
 use App\Http\Controllers\Common\DoctorController;
 use App\Http\Controllers\Common\PatientController;
+use App\Http\Controllers\Common\InvestigationController;
+use App\Http\Controllers\Common\GeneralAdviseController;
+use App\Http\Controllers\Common\VisitingFeeController;
 
 
 use App\Http\Controllers\Medicine\GenericController;
@@ -18,6 +21,9 @@ use App\Http\Controllers\Medicine\MedicineController;
 use App\Http\Controllers\Medicine\MedicineTypeController;
 use App\Http\Controllers\Medicine\StrengthController;
 use App\Http\Controllers\Medicine\SupplierController;
+use App\Http\Controllers\Medicine\DoseController;
+use App\Http\Controllers\Medicine\DurationController;
+use App\Http\Controllers\Medicine\MedicineAdviseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,3 +87,24 @@ use App\Http\Controllers\Medicine\SupplierController;
  Route::get('/getMedicines',[MedicineController::class, 'allMedicine']);
  Route::post('/AddMedicines',[MedicineController::class, 'addMedicine']);
  Route::post('/updateMedicines/{id}',[MedicineController::class, 'updateMedicine']);
+
+
+ Route::get('/alldoses',[DoseController::class, 'allDoses']);
+ Route::post('/addDoses',[DoseController::class, 'addDoses']);
+
+ Route::get('/allduration',[DurationController::class, 'allDuration']);
+ Route::post('/addduration',[DurationController::class, 'addDuration']);
+
+ Route::get('/allmedicineAdvise',[MedicineAdviseController::class, 'allMedicineAdvise']);
+ Route::post('/addmedicineAdvise',[MedicineAdviseController::class, 'addMedicineAdvise']);
+
+ Route::get('/allinvestigation',[InvestigationController::class, 'allInvestigation']);
+ Route::post('/addinvestigation',[InvestigationController::class, 'addInvestigation']);
+ Route::post('/updateinvestigation/{id}',[InvestigationController::class, 'updateInvestigation']);
+
+ Route::get('/allgeneralAdvice',[GeneralAdviseController::class, 'allGeneralAdvice']);
+ Route::post('/addgeneralAdvice',[GeneralAdviseController::class, 'addGeneralAdvice']);
+
+ Route::get('/allVisitingFees',[VisitingFeeController::class, 'allVisitingFees']);
+ Route::post('/addVisitingFees',[VisitingFeeController::class, 'addVisitingFees']);
+ Route::post('/updateVisitingFees/{id}',[VisitingFeeController::class, 'updateVisitingFees']);

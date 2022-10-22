@@ -31,6 +31,6 @@ class CreateGeneralAdviceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('general__advice');
+        Schema::dropIfExists('general_advice');
     }
 }

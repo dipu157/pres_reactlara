@@ -17,7 +17,9 @@ class GenericController extends Controller
 
     public function addgeneric(Request $request)
     {
-        $name = $request->input('name');
+
+        try{
+            $name = $request->input('name');
         $user_id = $request->input('user_id');
 
         $result = Generic::insert([
@@ -25,21 +27,45 @@ class GenericController extends Controller
             'user_id' => $user_id,
         ]);
 
-        return $result;
+            return response([
+                'message' => "Successfully Added"
+            ],200); // States Code
+
+        }
+        catch(Exception $exception){
+            return response([
+                'message' => $exception->getMessage()
+            ],400);
+        }
+
+
     }
 
     public function updateGeneric(Request $request)
     {
-        $id = $request->id;
-        
-        $name = $request->input('name');
-        $user_id = $request->input('user_id');
 
-        $result = Generic::where('id', $id)->update([
-            'name' => $name,
-            'user_id' => $user_id,
-        ]);
+        try{
 
-        return $result;
+            $id = $request->id;
+
+            $name = $request->input('name');
+            $user_id = $request->input('user_id');
+
+            $result = Generic::where('id', $id)->update([
+                'name' => $name,
+                'user_id' => $user_id,
+            ]);
+
+            return response([
+                'message' => "Successfully Edited"
+            ],200); // States Code
+
+        }
+        catch(Exception $exception){
+            return response([
+                'message' => $exception->getMessage()
+            ],400);
+        }
+
     }
 }
