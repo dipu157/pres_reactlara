@@ -2,14 +2,7 @@ import React from 'react'
 import CIcon from '@coreui/icons-react'
 import {
   cilBell,
-  cilCalculator,
-  cilChartPie,
-  cilCursor,
-  cilDescription,
-  cilDrop,
   cilNotes,
-  cilPencil,
-  cilPuzzle,
   cilSpeedometer,
   cilStar,
 } from '@coreui/icons'
@@ -23,129 +16,323 @@ const _nav = [
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
     badge: {
       color: 'info',
-      text: 'NEW',
     },
   },
   {
     component: CNavTitle,
-    name: 'Theme',
+    name: 'Prescription',
   },
   {
     component: CNavItem,
-    name: 'Colors',
-    to: '/theme/colors',
-    icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
+    name: 'Today`s Appointment',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    to: '/forms/form-control',
+
   },
   {
     component: CNavItem,
-    name: 'Typography',
-    to: '/theme/typography',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    name: 'Previous Prescriptions',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    to: '/forms/form-control',
   },
   {
     component: CNavTitle,
-    name: 'Components',
+    name: 'Appointment',
+  },
+  {
+    component: CNavItem,
+    name: 'Create Appointment',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    to: '/forms/form-control',
+
+  },
+  {
+    component: CNavItem,
+    name: 'Previous Prescriptions',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    to: '/forms/form-control',
+  },
+  {
+    component: CNavTitle,
+    name: 'Settings',
   },
   {
     component: CNavGroup,
-    name: 'Base',
-    to: '/base',
-    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+    name: 'Chambers',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Accordion',
-        to: '/base/accordion',
+        name: 'All Chamber',
+        to: '/chambers/allChamber',
       },
       {
         component: CNavItem,
-        name: 'Breadcrumb',
-        to: '/base/breadcrumbs',
+        name: 'Add Chamber',
+        to: '/chambers/addChamber',
+      },
+    ],
+  },
+  {
+    component: CNavItem,
+    name: 'Visiting Fee',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    to: '/forms/select',
+  },
+  {
+    component: CNavGroup,
+    name: 'Department',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Department',
+        to: '/forms/form-control',
       },
       {
         component: CNavItem,
-        name: 'Cards',
-        to: '/base/cards',
+        name: 'Add Department',
+        to: '/forms/select',
+      },
+    ],
+  },
+
+  {
+    component: CNavGroup,
+    name: 'Designation',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Designation',
+        to: '/forms/form-control',
       },
       {
         component: CNavItem,
-        name: 'Carousel',
-        to: '/base/carousels',
+        name: 'Add Designation',
+        to: '/forms/select',
+      },
+    ],
+  },
+  {
+    component: CNavTitle,
+    name: 'User',
+  },
+  {
+    component: CNavGroup,
+    name: 'Doctor',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Doctor',
+        to: '/forms/form-control',
       },
       {
         component: CNavItem,
-        name: 'Collapse',
-        to: '/base/collapses',
-      },
-      {
-        component: CNavItem,
-        name: 'List group',
-        to: '/base/list-groups',
-      },
-      {
-        component: CNavItem,
-        name: 'Navs & Tabs',
-        to: '/base/navs',
-      },
-      {
-        component: CNavItem,
-        name: 'Pagination',
-        to: '/base/paginations',
-      },
-      {
-        component: CNavItem,
-        name: 'Placeholders',
-        to: '/base/placeholders',
-      },
-      {
-        component: CNavItem,
-        name: 'Popovers',
-        to: '/base/popovers',
-      },
-      {
-        component: CNavItem,
-        name: 'Progress',
-        to: '/base/progress',
-      },
-      {
-        component: CNavItem,
-        name: 'Spinners',
-        to: '/base/spinners',
-      },
-      {
-        component: CNavItem,
-        name: 'Tables',
-        to: '/base/tables',
-      },
-      {
-        component: CNavItem,
-        name: 'Tooltips',
-        to: '/base/tooltips',
+        name: 'Add Doctor',
+        to: '/forms/select',
       },
     ],
   },
   {
     component: CNavGroup,
-    name: 'Buttons',
-    to: '/buttons',
-    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+    name: 'Patient',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Buttons',
-        to: '/buttons/buttons',
+        name: 'All Patient',
+        to: '/forms/form-control',
       },
       {
         component: CNavItem,
-        name: 'Buttons groups',
-        to: '/buttons/button-groups',
-      },
-      {
-        component: CNavItem,
-        name: 'Dropdowns',
-        to: '/buttons/dropdowns',
+        name: 'Add Patient',
+        to: '/forms/select',
       },
     ],
+  },
+  {
+    component: CNavTitle,
+    name: 'Medicine',
+  },
+  {
+    component: CNavGroup,
+    name: 'Generic',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Generic',
+        to: '/forms/form-control',
+      },
+      {
+        component: CNavItem,
+        name: 'Add Generic',
+        to: '/forms/select',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Medicine Types',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All MedicineTypes',
+        to: '/forms/form-control',
+      },
+      {
+        component: CNavItem,
+        name: 'Add MedicineTypes',
+        to: '/forms/select',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Strength',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Strength',
+        to: '/forms/form-control',
+      },
+      {
+        component: CNavItem,
+        name: 'Add Strength',
+        to: '/forms/select',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Supplier',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Supplier',
+        to: '/forms/form-control',
+      },
+      {
+        component: CNavItem,
+        name: 'Add Supplier',
+        to: '/forms/select',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Medicine',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Medicine',
+        to: '/forms/form-control',
+      },
+      {
+        component: CNavItem,
+        name: 'Add Medicine',
+        to: '/forms/select',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Dose',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Dose',
+        to: '/forms/form-control',
+      },
+      {
+        component: CNavItem,
+        name: 'Add Dose',
+        to: '/forms/select',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Duration',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Duration',
+        to: '/forms/form-control',
+      },
+      {
+        component: CNavItem,
+        name: 'Add Duration',
+        to: '/forms/select',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Medicine Advice',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All MedicineAdvice',
+        to: '/forms/form-control',
+      },
+      {
+        component: CNavItem,
+        name: 'Add MedicineAdvice',
+        to: '/forms/select',
+      },
+    ],
+  },
+  {
+    component: CNavTitle,
+    name: 'Others',
+  },
+  {
+    component: CNavGroup,
+    name: 'Investigation',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Investigation',
+        to: '/forms/form-control',
+      },
+      {
+        component: CNavItem,
+        name: 'Add Investigation',
+        to: '/forms/select',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'General Advice',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'All Advice',
+        to: '/forms/form-control',
+      },
+      {
+        component: CNavItem,
+        name: 'Add Advice',
+        to: '/forms/select',
+      },
+    ],
+  },
+  {
+    component: CNavTitle,
+    name: 'Template',
   },
   {
     component: CNavGroup,
@@ -161,68 +348,6 @@ const _nav = [
         component: CNavItem,
         name: 'Select',
         to: '/forms/select',
-      },
-      {
-        component: CNavItem,
-        name: 'Checks & Radios',
-        to: '/forms/checks-radios',
-      },
-      {
-        component: CNavItem,
-        name: 'Range',
-        to: '/forms/range',
-      },
-      {
-        component: CNavItem,
-        name: 'Input Group',
-        to: '/forms/input-group',
-      },
-      {
-        component: CNavItem,
-        name: 'Floating Labels',
-        to: '/forms/floating-labels',
-      },
-      {
-        component: CNavItem,
-        name: 'Layout',
-        to: '/forms/layout',
-      },
-      {
-        component: CNavItem,
-        name: 'Validation',
-        to: '/forms/validation',
-      },
-    ],
-  },
-  {
-    component: CNavItem,
-    name: 'Charts',
-    to: '/charts',
-    icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavGroup,
-    name: 'Icons',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'CoreUI Free',
-        to: '/icons/coreui-icons',
-        badge: {
-          color: 'success',
-          text: 'NEW',
-        },
-      },
-      {
-        component: CNavItem,
-        name: 'CoreUI Flags',
-        to: '/icons/flags',
-      },
-      {
-        component: CNavItem,
-        name: 'CoreUI Brands',
-        to: '/icons/brands',
       },
     ],
   },
@@ -241,31 +366,7 @@ const _nav = [
         name: 'Badges',
         to: '/notifications/badges',
       },
-      {
-        component: CNavItem,
-        name: 'Modal',
-        to: '/notifications/modals',
-      },
-      {
-        component: CNavItem,
-        name: 'Toasts',
-        to: '/notifications/toasts',
-      },
     ],
-  },
-  {
-    component: CNavItem,
-    name: 'Widgets',
-    to: '/widgets',
-    icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
-  },
-  {
-    component: CNavTitle,
-    name: 'Extras',
   },
   {
     component: CNavGroup,
@@ -282,23 +383,7 @@ const _nav = [
         name: 'Register',
         to: '/register',
       },
-      {
-        component: CNavItem,
-        name: 'Error 404',
-        to: '/404',
-      },
-      {
-        component: CNavItem,
-        name: 'Error 500',
-        to: '/500',
-      },
     ],
-  },
-  {
-    component: CNavItem,
-    name: 'Docs',
-    href: 'https://coreui.io/react/docs/templates/installation/',
-    icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
   },
 ]
 
