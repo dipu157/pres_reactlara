@@ -27,34 +27,30 @@ export default class ChamberAll extends Component {
 
      const MyList = this.state.chamberLists;
 
-
-        const MyView = MyList.map((chambers, i) => {
-            return <div>
-                <thead>
-                    <tr>
-                        <th className="border-0">Name</th>
-                        <th className="border-0">Address</th>
-                        <th className="border-0">Phone</th>
-                        <th className="border-0">City</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>{chambers.name}</td>
-                        <td>{chambers.address}</td>
-                        <td>{chambers.phone}</td>
-                        <td>{chambers.city}</td>
-                    </tr>
-                </tbody>
-            </div>
-        })
-
     return (
       <>
-
-      <Row>
-      {MyView}
-      </Row>
+        <thead>
+            <tr>
+                <th className="border-0">Name</th>
+                <th className="border-0">Address</th>
+                <th className="border-0">Phone</th>
+                <th className="border-0">City</th>
+            </tr>
+        </thead>   
+        
+        {
+            MyList.map((item,i) =>
+                <tbody  key={i}>
+                    <tr>
+                        <td>{item.name}</td>
+                        <td>{item.address}</td>
+                        <td>{item.phone}</td>
+                        <td>{item.city}</td>
+                    </tr>
+                </tbody>
+            )
+        }
+      
       </>
     )
   }

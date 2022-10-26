@@ -6,7 +6,9 @@ import Icons from "views/Default/Icons.js";
 import Maps from "views/Default/Maps.js";
 import Notifications from "views/Default/Notifications.js";
 
-import Chamber from "views/Common/ChamberList.js";
+import Chamber from "views/common/ChamberList.js";
+import Department from "views/common/DepartmentList.js";
+import Designation from "views/common/DesignationList.js";
 
 const dashboardRoutes = [
   {
@@ -21,6 +23,20 @@ const dashboardRoutes = [
     name: "Chamber",
     icon: "nc-icon nc-pin-3",
     component: Chamber,
+    layout: "/admin"
+  },
+  {
+    path: "/departmentList",
+    name: "Department",
+    icon: "nc-icon nc-pin-3",
+    component: Department,
+    layout: "/admin"
+  },
+  {
+    path: "/designationList",
+    name: "Designation",
+    icon: "nc-icon nc-pin-3",
+    component: Designation,
     layout: "/admin"
   }
   //,
