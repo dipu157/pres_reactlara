@@ -126,7 +126,7 @@ function Dashboard() {
             </Card>
           </Col>
         </Row>
-        <Row>
+        {/* <Row>
           <Col md="8">
             <Card>
               <Card.Header>
@@ -631,7 +631,7 @@ function Dashboard() {
               </Card.Footer>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
     </>
   );
