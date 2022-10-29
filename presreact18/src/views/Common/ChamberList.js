@@ -57,7 +57,7 @@ export default function ChamberList() {
             <Card className="card-plain table-plain-bg">
               <Card.Header>
                 <Card.Title as="h4">Chmber List</Card.Title>
-                <Button style={{float: 'right'}} onClick={chamberAddShow}>Add Chamber</Button>
+                <Button style={{float: 'right'}} >Add Chamber</Button>
               </Card.Header>
               <Card.Body className="table-full-width table-responsive px-0">
                 <Table className="table-hover">

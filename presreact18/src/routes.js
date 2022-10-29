@@ -9,6 +9,7 @@ import Notifications from "views/Default/Notifications.js";
 import Chamber from "views/common/ChamberList.js";
 import Department from "views/common/DepartmentList.js";
 import Designation from "views/common/DesignationList.js";
+import Doctor from "views/common/DoctorList.js";
 
 const dashboardRoutes = [
   {
@@ -38,7 +39,14 @@ const dashboardRoutes = [
     icon: "nc-icon nc-pin-3",
     component: Designation,
     layout: "/admin"
-  }
+  },
+  {
+    path: "/doctorList",
+    name: "Doctor",
+    icon: "nc-icon nc-pin-3",
+    component: Doctor,
+    layout: "/admin"
+  },
   //,
   // {
   //   path: "/user",

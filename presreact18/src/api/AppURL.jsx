@@ -9,6 +9,9 @@ class AppURL {
     static DesignationList = this.BaseURL + "/getdesignations"
     static DesignationAdd = this.BaseURL + "/storedesignation"
 
+    static DoctorList = this.BaseURL + "/getalldoctors"
+    static DoctorAdd = this.BaseURL + "/storedoctor"
+
     // static ProductListByRemark(Remark) {
     //     return this.BaseURL + "/productlistbyremark/" + Remark;
     // }
