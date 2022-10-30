@@ -10,6 +10,12 @@ import Chamber from "views/common/ChamberList.js";
 import Department from "views/common/DepartmentList.js";
 import Designation from "views/common/DesignationList.js";
 import Doctor from "views/common/DoctorList.js";
+import Patient from "views/common/PatientList.js";
+
+
+import Generic from "views/medicine/GenericList.js";
+import MedicineType from "views/medicine/MedicineTypeList.js";
+import Strength from "views/medicine/StrengthList.js";
 
 const dashboardRoutes = [
   {
@@ -22,29 +28,57 @@ const dashboardRoutes = [
   {
     path: "/chamberList",
     name: "Chamber",
-    icon: "nc-icon nc-pin-3",
+    icon: "nc-icon nc-square-pin",
     component: Chamber,
     layout: "/admin"
   },
   {
     path: "/departmentList",
     name: "Department",
-    icon: "nc-icon nc-pin-3",
+    icon: "nc-icon nc-badge",
     component: Department,
     layout: "/admin"
   },
   {
     path: "/designationList",
     name: "Designation",
-    icon: "nc-icon nc-pin-3",
+    icon: "nc-icon nc-badge",
     component: Designation,
     layout: "/admin"
   },
   {
     path: "/doctorList",
     name: "Doctor",
-    icon: "nc-icon nc-pin-3",
+    icon: "nc-icon nc-single-02",
     component: Doctor,
+    layout: "/admin"
+  },
+  {
+    path: "/patientList",
+    name: "Patient",
+    icon: "nc-icon nc-single-02",
+    component: Patient,
+    layout: "/admin"
+  },
+  {
+    path: "/genericList",
+    name: "Generic",
+    icon: "nc-icon nc-bullet-list-67",
+    component: Generic,
+    layout: "/admin"
+  },
+  {
+    path: "/medicineTypeList",
+    name: "MedicineType",
+    icon: "nc-icon nc-bullet-list-67",
+    component: MedicineType,
+    layout: "/admin"
+  },
+  {
+    path: "/strengthList",
+    name: "Strength",
+    icon: "nc-icon nc-bullet-list-67",
+    component: Strength,
     layout: "/admin"
   },
   //,
@@ -69,13 +103,13 @@ const dashboardRoutes = [
   //   component: Typography,
   //   layout: "/admin"
   // },
-  // {
-  //   path: "/icons",
-  //   name: "Icons",
-  //   icon: "nc-icon nc-atom",
-  //   component: Icons,
-  //   layout: "/admin"
-  // },
+  {
+    path: "/icons",
+    name: "Icons",
+    icon: "nc-icon nc-atom",
+    component: Icons,
+    layout: "/admin"
+  },
   // {
   //   path: "/maps",
   //   name: "Maps",

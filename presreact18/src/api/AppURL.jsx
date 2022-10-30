@@ -12,6 +12,13 @@ class AppURL {
     static DoctorList = this.BaseURL + "/getalldoctors"
     static DoctorAdd = this.BaseURL + "/storedoctor"
 
+    static PatientList = this.BaseURL + "/getallpatients"
+    static PatientAdd = this.BaseURL + "/addnewpatient"
+
+    static GenericList = this.BaseURL + "/getGenerics"
+    static MedicineTypeList = this.BaseURL + "/getMedicineTypes"
+    static StrengthList = this.BaseURL + "/getStrength"
+
     // static ProductListByRemark(Remark) {
     //     return this.BaseURL + "/productlistbyremark/" + Remark;
     // }
