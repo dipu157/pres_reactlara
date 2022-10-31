@@ -1,6 +1,6 @@
 import AppURL from 'api/AppURL';
 import React, { useEffect, useState } from 'react'
-import { Card, Table, Container, Row, Col, Button } from "react-bootstrap";
+import { Card, Table, Container, Row, Col, Button, Form } from "react-bootstrap";
 import axios  from 'axios';
 import Modal from 'react-bootstrap/Modal';
 
@@ -83,15 +83,50 @@ export default function DepartmentList() {
         </Row>
       </Container>
 
-
       <Modal show={show} onHide={deptAddClose}>
       <h3 className='mt-5 ml-5 text-center'>Add Department</h3> 
           <div className='m-5'>
-            <input type="text" onChange={(e) => setName(e.target.value)} className="form-control" placeholder="Name" /> <br />
-            <input type="text" onChange={(e) => setShortName(e.target.value)} className="form-control" placeholder="Short Name" /> <br />
-            <input type="text" onChange={(e) => setDescription(e.target.value)} className="form-control" placeholder="Description" /> <br />
-            <button onClick={addNewDepartment} className='btn btn-primary float-right'>ADD</button>
-          </div>
+          <Form> 
+          <Row>
+            <Col className="pr-1" md="12">
+              <Form.Group>
+                <label>Name</label>
+                <Form.Control
+                  placeholder="Department Name"
+                  type="text" onChange={(e) => setName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col md="12">
+              <Form.Group>
+                <label>Short Name</label>
+                <Form.Control
+                  placeholder="Short Name"
+                  type="text" onChange={(e) => setShortName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="pr-1" md="12">
+              <Form.Group>
+                <label>Description</label>
+                <Form.Control
+                  placeholder="Description"
+                  type="text" onChange={(e) => setDescription(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+            </Col>
+          </Row>
+          <div className="clearfix"></div>
+
+          <Button type="submit" onClick={addNewDepartment} className='btn btn-primary float-right mt-2'>
+              ADD
+          </Button>
+        </Form>
+        </div>
       </Modal>
     </>
   )

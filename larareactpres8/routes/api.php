@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\UserController;
 
 use App\Http\Controllers\Common\ChamberController;
 use App\Http\Controllers\Common\DepartmentController;
@@ -46,6 +47,9 @@ use App\Http\Controllers\Medicine\MedicineAdviseController;
 
  // Login Routes
  Route::post('/login',[AuthController::class, 'Login']);
+
+  // Current User Route
+Route::get('/user',[UserController::class, 'User']);
 
 
  Route::get('/chamberaddress',[ChamberController::class, 'index']);

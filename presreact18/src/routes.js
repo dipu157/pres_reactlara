@@ -16,6 +16,8 @@ import Patient from "views/common/PatientList.js";
 import Generic from "views/medicine/GenericList.js";
 import MedicineType from "views/medicine/MedicineTypeList.js";
 import Strength from "views/medicine/StrengthList.js";
+import Supplier from "views/medicine/SupplierList.js";
+import Medicine from "views/medicine/MedicineList.js";
 
 const dashboardRoutes = [
   {
@@ -24,6 +26,10 @@ const dashboardRoutes = [
     icon: "nc-icon nc-chart-pie-35",
     component: Dashboard,
     layout: "/admin"
+  },
+  {
+    name: "Common",
+    icon: "nc-icon nc-stre-down"
   },
   {
     path: "/chamberList",
@@ -47,6 +53,10 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    name: "User",
+    icon: "nc-icon nc-stre-down"
+  },
+  {
     path: "/doctorList",
     name: "Doctor",
     icon: "nc-icon nc-single-02",
@@ -61,6 +71,10 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    name: "Medicine",
+    icon: "nc-icon nc-stre-down"
+  },
+  {
     path: "/genericList",
     name: "Generic",
     icon: "nc-icon nc-bullet-list-67",
@@ -69,8 +83,8 @@ const dashboardRoutes = [
   },
   {
     path: "/medicineTypeList",
-    name: "MedicineType",
-    icon: "nc-icon nc-bullet-list-67",
+    name: "Medicine Type",
+    icon: "nc-icon nc-layers-3",
     component: MedicineType,
     layout: "/admin"
   },
@@ -79,6 +93,20 @@ const dashboardRoutes = [
     name: "Strength",
     icon: "nc-icon nc-bullet-list-67",
     component: Strength,
+    layout: "/admin"
+  },
+  {
+    path: "/supplierList",
+    name: "Supplier",
+    icon: "nc-icon nc-delivery-fast",
+    component: Supplier,
+    layout: "/admin"
+  },
+  {
+    path: "/medicineList",
+    name: "Medicine",
+    icon: "nc-icon nc-notes",
+    component: Medicine,
     layout: "/admin"
   },
   //,

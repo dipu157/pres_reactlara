@@ -4,43 +4,44 @@ import { Card, Table, Container, Row, Col, Button } from "react-bootstrap";
 import axios  from 'axios';
 import Modal from 'react-bootstrap/Modal';
 
-export default function MedicineTypeList() {
+export default function SupplierList() {
 
   const [show, setShow] = useState(false);
 
   const [name,setName] = useState("");
-  const [short_name,setShortName] = useState("");
+  const [phone,setPhone] = useState("");
+  const [contact_person_details,setContactPerson] = useState("");
   const [user_id,setUser] = useState("");
 
-  const mtAddClose = () => setShow(false);
-  const mtAddShow = () => setShow(true);
+  const suppAddClose = () => setShow(false);
+  const suppAddShow = () => setShow(true);
 
-  const [medicineType, setMedicineType] = useState([]);
+  const [supplier, setSupplier] = useState([]);
 
   useEffect(() => {
-    axios.get(AppURL.MedicineTypeList).then(response => {
-      setMedicineType(response.data);
+    axios.get(AppURL.SupplierList).then(response => {
+      setSupplier(response.data);
     }).catch(error => {
 
     });
   }, [])
 
-  async function addNewMedicineType()
+  async function addNewSupplier()
   {
     
-    console.warn(name,short_name,user_id);
+    console.warn(name,phone,contact_person_details,user_id);
     const formData = new FormData();
     formData.append('name',name);
-    formData.append('short_name',short_name);
+    formData.append('phone',phone);
+    formData.append('contact_person_details',contact_person_details);
     formData.append('user_id',1);
 
-    let result = await fetch("http://localhost:8000/api/addMedicineTypes",{
+    let result = await fetch("http://localhost:8000/api/addsupplier",{
       method: 'POST',
       body: formData
     });
     alert("Data Save Successfully");
   }
-
 
   return (
     <>
@@ -50,25 +51,27 @@ export default function MedicineTypeList() {
           <Col md="12">
             <Card className="card-plain table-plain-bg">
               <Card.Header>
-                <Card.Title as="h4">Medicine Type List</Card.Title>
-                <Button style={{float: 'right'}} onClick={mtAddShow}>Add New</Button>
+                <Card.Title as="h4">Supplier List</Card.Title>
+                <Button style={{float: 'right'}} onClick={suppAddShow}>Add New</Button>
               </Card.Header>
               <Card.Body className="table-full-width table-responsive px-0">
                 <Table className="table-hover">
                 <thead>
                     <tr>
                         <th className="border-0">Name</th>
-                        <th className="border-0">Short Name</th>
+                        <th className="border-0">Phone</th>
+                        <th className="border-0">Contact Person</th>
                         <th className="border-0">Action</th>
                     </tr>
                 </thead>   
 
                 {
-                    medicineType.map((item,i) =>
+                    supplier.map((item,i) =>
                         <tbody  key={i}>
                             <tr>
                                 <td>{item.name}</td>
-                                <td>{item.short_name}</td>
+                                <td>{item.phone}</td>
+                                <td>{item.contact_person_details}</td>
                                 <td>
                                   <Button className='btn btn-primary'>Edit</Button>
                                 </td>
@@ -85,12 +88,13 @@ export default function MedicineTypeList() {
       </Container>
 
 
-      <Modal show={show} onHide={mtAddClose}>
-      <h3 className='mt-5 ml-5 text-center'>Add Medicine Type</h3> 
+      <Modal show={show} onHide={suppAddClose}>
+      <h3 className='mt-5 ml-5 text-center'>Add Supplier</h3> 
           <div className='m-5'>
             <input type="text" onChange={(e) => setName(e.target.value)} className="form-control" placeholder="Name" /> <br />
-            <input type="text" onChange={(e) => setShortName(e.target.value)} className="form-control" placeholder="Short Name" /> <br />
-            <button onClick={addNewMedicineType} className='btn btn-primary float-right'>ADD</button>
+            <input type="text" onChange={(e) => setPhone(e.target.value)} className="form-control" placeholder="Phone" /> <br />
+            <input type="text" onChange={(e) => setContactPerson(e.target.value)} className="form-control" placeholder="Contact Person" /> <br />
+            <button onClick={addNewSupplier} className='btn btn-primary float-right'>ADD</button>
           </div>
       </Modal>
     </>
