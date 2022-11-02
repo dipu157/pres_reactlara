@@ -19,6 +19,9 @@ import Strength from "views/medicine/StrengthList.js";
 import Supplier from "views/medicine/SupplierList.js";
 import Medicine from "views/medicine/MedicineList.js";
 
+import Investigation from "views/prescription/InvestigationList.js";
+import Advice from "views/prescription/AdviceList.js";
+
 const dashboardRoutes = [
   {
     path: "/dashboard",
@@ -107,6 +110,24 @@ const dashboardRoutes = [
     name: "Medicine",
     icon: "nc-icon nc-notes",
     component: Medicine,
+    layout: "/admin"
+  },
+  {
+    name: "Investigation & Advice",
+    icon: "nc-icon nc-stre-down"
+  },
+  {
+    path: "/investigation",
+    name: "Investigation",
+    icon: "nc-icon nc-zoom-split",
+    component: Investigation,
+    layout: "/admin"
+  },
+  {
+    path: "/advice",
+    name: "Advice",
+    icon: "nc-icon nc-notes",
+    component: Advice,
     layout: "/admin"
   },
   //,

@@ -37,9 +37,17 @@ class AppURL {
     static MedicineList = this.BaseURL + "/getMedicines"
     static MedicineAdd = this.BaseURL + "/AddMedicines"
 
-    // static ProductListByRemark(Remark) {
-    //     return this.BaseURL + "/productlistbyremark/" + Remark;
-    // }
+    static AdviceList = this.BaseURL + "/allgeneralAdvice"
+    static AdviceAdd = this.BaseURL + "/addgeneralAdvice"
+    static AdviceEdit(id) {
+        return this.BaseURL + "/updateadvice/" + id;
+    }
+
+    static InvestigationList = this.BaseURL + "/allinvestigation"
+    static InvestigationAdd = this.BaseURL + "/addinvestigation"
+    static InvestigationEdit(id) {
+        return this.BaseURL + "/updateinvestigation/" + id;
+    }
    
 }
 

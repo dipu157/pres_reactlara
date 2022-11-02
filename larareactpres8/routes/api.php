@@ -22,9 +22,7 @@ use App\Http\Controllers\Medicine\MedicineController;
 use App\Http\Controllers\Medicine\MedicineTypeController;
 use App\Http\Controllers\Medicine\StrengthController;
 use App\Http\Controllers\Medicine\SupplierController;
-use App\Http\Controllers\Medicine\DoseController;
-use App\Http\Controllers\Medicine\DurationController;
-use App\Http\Controllers\Medicine\MedicineAdviseController;
+use App\Http\Controllers\Medicine\DoseDurationAdviceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,14 +91,8 @@ Route::get('/user',[UserController::class, 'User']);
  Route::post('/updateMedicines/{id}',[MedicineController::class, 'updateMedicine']);
 
 
- Route::get('/alldoses',[DoseController::class, 'allDoses']);
- Route::post('/addDoses',[DoseController::class, 'addDoses']);
-
- Route::get('/allduration',[DurationController::class, 'allDuration']);
- Route::post('/addduration',[DurationController::class, 'addDuration']);
-
- Route::get('/allmedicineAdvise',[MedicineAdviseController::class, 'allMedicineAdvise']);
- Route::post('/addmedicineAdvise',[MedicineAdviseController::class, 'addMedicineAdvise']);
+ Route::get('/alldoseDurationAdvice',[DoseDurationAdviceController::class, 'allDoseDuration']);
+ Route::post('/adddoseDurationAdvice',[DoseDurationAdviceController::class, 'addDoseDuration']);
 
  Route::get('/allinvestigation',[InvestigationController::class, 'allInvestigation']);
  Route::post('/addinvestigation',[InvestigationController::class, 'addInvestigation']);
@@ -108,6 +100,7 @@ Route::get('/user',[UserController::class, 'User']);
 
  Route::get('/allgeneralAdvice',[GeneralAdviseController::class, 'allGeneralAdvice']);
  Route::post('/addgeneralAdvice',[GeneralAdviseController::class, 'addGeneralAdvice']);
+ Route::post('/updateadvice/{id}',[GeneralAdviseController::class, 'updateAdvice']);
 
  Route::get('/allVisitingFees',[VisitingFeeController::class, 'allVisitingFees']);
  Route::post('/addVisitingFees',[VisitingFeeController::class, 'addVisitingFees']);
