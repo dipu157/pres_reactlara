@@ -22,12 +22,26 @@ import Medicine from "views/medicine/MedicineList.js";
 import Investigation from "views/prescription/InvestigationList.js";
 import Advice from "views/prescription/AdviceList.js";
 
+import OldPrescription from "views/prescription/prescription/PrescriptionList.js";
+import NewPrescription from "views/prescription/prescription/NewPrescription.js";
+
 const dashboardRoutes = [
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    icon: "nc-icon nc-chart-pie-35",
-    component: Dashboard,
+    name: "Prescription",
+    icon: "nc-icon nc-stre-down"
+  },
+  {
+    path: "/new_prescription",
+    name: "New Prescription",
+    icon: "nc-icon nc-notes",
+    component: NewPrescription,
+    layout: "/admin"
+  },
+  {
+    path: "/old_prescription",
+    name: "Old Prescription",
+    icon: "nc-icon nc-chart-bar-32",
+    component: OldPrescription,
     layout: "/admin"
   },
   {

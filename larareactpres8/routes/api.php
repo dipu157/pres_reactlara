@@ -24,6 +24,8 @@ use App\Http\Controllers\Medicine\StrengthController;
 use App\Http\Controllers\Medicine\SupplierController;
 use App\Http\Controllers\Medicine\DoseDurationAdviceController;
 
+use App\Http\Controllers\Prescription\PrescriptionController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -105,3 +107,5 @@ Route::get('/user',[UserController::class, 'User']);
  Route::get('/allVisitingFees',[VisitingFeeController::class, 'allVisitingFees']);
  Route::post('/addVisitingFees',[VisitingFeeController::class, 'addVisitingFees']);
  Route::post('/updateVisitingFees/{id}',[VisitingFeeController::class, 'updateVisitingFees']);
+
+ Route::post('/createPrescription',[PrescriptionController::class, 'newPrescription']);
