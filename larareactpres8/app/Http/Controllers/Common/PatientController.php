@@ -15,6 +15,20 @@ class PatientController extends Controller
         return $patients;
     }
 
+    public function searchPatients($key)
+    {
+        $patients = Patient::query()
+                    ->where('full_name','Like',"%$key%")
+                    ->orWhere('phone','Like',"%$key%")
+                    ->orWhere('patient_code','Like',"%$key%")
+                    ->get();
+
+        return response([
+            'message' => "Successfull",
+            'result' => $patients
+        ],200);
+    }
+
     public function addPatient(Request $request)
     {
 

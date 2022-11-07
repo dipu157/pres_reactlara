@@ -33,15 +33,18 @@ export default function InvestigationModal({data,show,setShow}) {
 
     const result = await axios.post(!id ? AppURL.InvestigationAdd : AppURL.InvestigationEdit(id),formData);
 
+    setName("");
+    setRemark("");
     alert("Data Save Successfully");
+    setShow(false);
   }
 
   return (
      <Modal show={show} onHide={() => setShow(false)}>
-      <h3 className='mt-5 ml-5 text-center'>Update Investigation</h3> 
+      <h3 className='mt-5 ml-5 text-center'>Investigation Add/Update</h3> 
       <Modal.Body> 
         <Form>
-        <Form.Control defaultValue={data.id} readOnly />
+        <Form.Control type="hidden" defaultValue={data.id} readOnly />
             <Form.Group className="mb-3" controlId="formGridAddress1">
                 <Form.Label>Name</Form.Label>
                 <Form.Control onChange={(e) => setName(e.target.value)} defaultValue={test_name} />

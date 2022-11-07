@@ -10,7 +10,6 @@ import "./assets/css/demo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import AdminLayout from "layouts/Admin.js";
-import Login from "views/Auth/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

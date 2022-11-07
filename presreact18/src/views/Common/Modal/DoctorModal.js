@@ -69,15 +69,23 @@ export default function DoctorModal({data,show,setShow}) {
     const result = await axios.post(!id ? AppURL.DoctorAdd : AppURL.DoctorEdit(id),formData);
 
     alert("Data Save Successfully");
+    setName("");
+    setEmail("");
+    setPhone("");
+    setDepartmentId("");
+    setDesignationId("");
+    setDegrees("");
+    setShow(false);
+    window.location.reload();
   }
 
 
   return (
     <Modal show={show} onHide={() => setShow(false)}>
-      <h3 className='mt-5 ml-5 text-center'>Update Doctor</h3> 
+      <h3 className='mt-5 ml-5 text-center'>Doctor Add/Update</h3> 
       <Modal.Body> 
         <Form>
-        <Form.Control defaultValue={data.id} readOnly />
+        <Form.Control type="hidden" defaultValue={data.id} readOnly />
             <Form.Group className="mb-3" controlId="formGridAddress1">
                 <Form.Label>Name</Form.Label>
                 <Form.Control onChange={(e) => setName(e.target.value)} defaultValue={name} />

@@ -34,6 +34,9 @@ export default function AdviceModal({data,show,setShow}) {
     const result = await axios.post(!id ? AppURL.AdviceAdd : AppURL.AdviceEdit(id),formData);
 
     alert("Data Save Successfully");
+    setName("");
+    setRemark("");
+    setShow(false);
   }
 
 
@@ -42,7 +45,7 @@ export default function AdviceModal({data,show,setShow}) {
       <h3 className='mt-5 ml-5 text-center'>Update Advice</h3> 
       <Modal.Body> 
         <Form>
-        <Form.Control defaultValue={data.id} readOnly />
+        <Form.Control type='hidden' defaultValue={data.id} readOnly />
             <Form.Group className="mb-3" controlId="formGridAddress1">
                 <Form.Label>Name</Form.Label>
                 <Form.Control onChange={(e) => setName(e.target.value)} defaultValue={general_advice} />

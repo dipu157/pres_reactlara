@@ -68,6 +68,7 @@ Route::get('/user',[UserController::class, 'User']);
 
 
  Route::get('/getallpatients',[PatientController::class, 'allPatients']);
+ Route::get('/searchpatients/{key}',[PatientController::class, 'searchPatients']);
  Route::post('/addnewpatient',[PatientController::class, 'addPatient']);
  Route::post('/updatepatient/{id}',[PatientController::class, 'updatePatient']);
 

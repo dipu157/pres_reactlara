@@ -21,6 +21,12 @@ class AppURL {
 
     static PatientList = this.BaseURL + "/getallpatients"
     static PatientAdd = this.BaseURL + "/addnewpatient"
+    static PatientEdit(id) {
+        return this.BaseURL + "/updatepatient/" + id;
+    }
+    static PatientSearch(key) {
+        return this.BaseURL + "/searchpatients/" + key;
+    }
 
     static GenericList = this.BaseURL + "/getGenerics"
     static GenericAdd = this.BaseURL + "/addgeneric"
