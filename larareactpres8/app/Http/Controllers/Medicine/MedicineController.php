@@ -15,6 +15,21 @@ class MedicineController extends Controller
         return $medicine;
     }
 
+    public function searchMedicines($key)
+    {
+        $medicine = Medicine::select('id','name','strength_id','medicine_type_id')
+                    ->where('name','Like',"%$key%")
+                    ->with('medicinetype')
+                    ->with('strength')
+                    ->with('generic')
+                    ->get();
+
+        return response([
+            'message' => "Successfull",
+            'result' => $medicine
+        ],200);
+    }
+
     public function addMedicine(Request $request)
     {
         try{

@@ -37,6 +37,9 @@ export default function StrengthList() {
       body: formData
     });
     alert("Data Save Successfully");
+    setShow(false);
+    setName("");
+    window.location.reload();
   }
 
 

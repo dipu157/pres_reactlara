@@ -15,6 +15,18 @@ class InvestigationController extends Controller
         return $investigations;
     }
 
+    public function searchInvestigations($key)
+    {
+        $investigations = Investigation::query()
+                    ->where('test_name','Like',"%$key%")
+                    ->get();
+
+        return response([
+            'message' => "Successfull",
+            'result' => $investigations
+        ],200);
+    }
+
     public function addInvestigation(Request $request)
     {
         try{

@@ -39,6 +39,10 @@ export default function MedicineTypeList() {
       body: formData
     });
     alert("Data Save Successfully");
+    setShow(false);
+    setName("");
+    setShortName("");
+    window.location.reload();
   }
 
 

@@ -42,17 +42,26 @@ class AppURL {
 
     static MedicineList = this.BaseURL + "/getMedicines"
     static MedicineAdd = this.BaseURL + "/AddMedicines"
+    static MedicineSearch(key) {
+        return this.BaseURL + "/searchmedicines/" + key;
+    }
 
     static AdviceList = this.BaseURL + "/allgeneralAdvice"
     static AdviceAdd = this.BaseURL + "/addgeneralAdvice"
     static AdviceEdit(id) {
         return this.BaseURL + "/updateadvice/" + id;
     }
+    static AdviceSearch(key) {
+        return this.BaseURL + "/searchadvices/" + key;
+    }
 
     static InvestigationList = this.BaseURL + "/allinvestigation"
     static InvestigationAdd = this.BaseURL + "/addinvestigation"
     static InvestigationEdit(id) {
         return this.BaseURL + "/updateinvestigation/" + id;
+    }
+    static InvestigationSearch(key) {
+        return this.BaseURL + "/searchinvestigations/" + key;
     }
    
 }

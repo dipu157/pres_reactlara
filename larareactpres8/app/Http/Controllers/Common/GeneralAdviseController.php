@@ -15,6 +15,18 @@ class GeneralAdviseController extends Controller
         return $general_Advices;
     }
 
+    public function searchAdvice($key)
+    {
+        $general_Advices = GeneralAdvice::query()
+                    ->where('general_advice','Like',"%$key%")
+                    ->get();
+
+        return response([
+            'message' => "Successfull",
+            'result' => $general_Advices
+        ],200);
+    }
+
     public function addGeneralAdvice(Request $request)
     {
         try{

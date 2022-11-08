@@ -41,6 +41,9 @@ export default function SupplierList() {
       body: formData
     });
     alert("Data Save Successfully");
+    setShow(false);
+    setName("");
+    window.location.reload();
   }
 
   return (

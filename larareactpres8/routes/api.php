@@ -92,6 +92,7 @@ Route::get('/user',[UserController::class, 'User']);
  Route::get('/getMedicines',[MedicineController::class, 'allMedicine']);
  Route::post('/AddMedicines',[MedicineController::class, 'addMedicine']);
  Route::post('/updateMedicines/{id}',[MedicineController::class, 'updateMedicine']);
+ Route::get('/searchmedicines/{key}',[MedicineController::class, 'searchMedicines']);
 
 
  Route::get('/alldoseDurationAdvice',[DoseDurationAdviceController::class, 'allDoseDuration']);
@@ -100,10 +101,12 @@ Route::get('/user',[UserController::class, 'User']);
  Route::get('/allinvestigation',[InvestigationController::class, 'allInvestigation']);
  Route::post('/addinvestigation',[InvestigationController::class, 'addInvestigation']);
  Route::post('/updateinvestigation/{id}',[InvestigationController::class, 'updateInvestigation']);
+ Route::get('/searchinvestigations/{key}',[InvestigationController::class, 'searchInvestigations']);
 
  Route::get('/allgeneralAdvice',[GeneralAdviseController::class, 'allGeneralAdvice']);
  Route::post('/addgeneralAdvice',[GeneralAdviseController::class, 'addGeneralAdvice']);
  Route::post('/updateadvice/{id}',[GeneralAdviseController::class, 'updateAdvice']);
+ Route::get('/searchadvices/{key}',[GeneralAdviseController::class, 'searchAdvice']);
 
  Route::get('/allVisitingFees',[VisitingFeeController::class, 'allVisitingFees']);
  Route::post('/addVisitingFees',[VisitingFeeController::class, 'addVisitingFees']);
