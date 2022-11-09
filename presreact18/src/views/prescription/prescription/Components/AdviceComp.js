@@ -8,6 +8,8 @@ export default function AdviceComp() {
 
     const [advices, setAdvices] = useState([]);
     const [text, setText] = useState('');
+    const [id, setId] = useState('');
+    const [advice, setAdvice] = useState('');
 
     async function searchAdvice(key)
     {
@@ -20,8 +22,8 @@ export default function AdviceComp() {
     }
   
     const selectAdvice = (key) => {
-      setText(key);
-      console.log('advice',advices);
+      setId(key.id);
+      setAdvice(key.general_advice);
       setAdvices([]);
     }
    
@@ -29,12 +31,12 @@ export default function AdviceComp() {
 
   return (
     <>
-        <InputGroup className="mb-3 mt-3">
-              <Form.Control onChange={e => searchAdvice(e.target.value) } value={text} placeholder='Advice' />
+        <InputGroup className="mt-5">
+              <Form.Control onChange={e => searchAdvice(e.target.value) } value={advice} placeholder='Advice' />
               <Button className='btn btn-sm btn-default'>ADD</Button>
             </InputGroup>
             {advices && advices.map((inv, i) =>
-              <div key={i} onClick={() => selectAdvice(inv.general_advice)}>{inv.general_advice}</div>
+              <div className='autoComp-background' key={i} onClick={() => selectAdvice(inv)}>{inv.general_advice}</div>
               )}
     </>
   )

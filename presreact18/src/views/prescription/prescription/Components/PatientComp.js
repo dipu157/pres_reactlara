@@ -1,11 +1,18 @@
 import React, { useState } from 'react'
 import AppURL from 'api/AppURL';
 import axios from 'axios'
+import CurrentDate from 'components/utils/CurrentDate';
+
 
 export default function PatientComp() {
 
     const [patients, setPatients] = useState([]);
     const [text, setText] = useState('');
+    const [id, setId] = useState('');
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [age, setAge] = useState('');
+    const [gender, setGender] = useState('');
 
     async function searchPatient(key)
     {
@@ -17,9 +24,24 @@ export default function PatientComp() {
       setText(key)
     }
   
-    const selectPatient = (key) => {
-      setText(key);
-      console.log('patients',patients);
+    const selectPatient = (a) => {
+      setId(a.id);
+      setName(a.full_name);
+      setPhone(a.phone);
+
+      let gen = a.gender;
+      if(gen == 'm')
+      {
+        setGender("Male");
+      }else{
+        setGender("Female");
+      }
+      const dob = new Date(a.dob);
+      const today = CurrentDate();
+      const diffInMs   = new Date(today) - new Date(dob)
+      const diffInDays = Math.round(diffInMs / (1000 * 60 * 60 * 24 * 365));
+      const page = diffInDays + " Y" ;
+      setAge(page);
       setPatients([]);
     }
 
@@ -27,20 +49,20 @@ export default function PatientComp() {
   return (
     <>
          <div className="row mt-3">
-          <input type="hidden" className="form-control col-1 pid" />
+          <input type="hidden" value={id} name="id" className="form-control col-1 pid" />
           
           <div className=' col-4'>  Patient Name : 
-            <input type="text" className="form-control pname" placeholder='search by name,code,phone..' 
-            onChange={e => searchPatient(e.target.value) } value={text} />
+            <input type="text" className="form-control" placeholder='search by name,code,phone..' 
+            onChange={e => searchPatient(e.target.value) } value={name} />
 
             {patients && patients.map((patient, i) =>
-            <div key={i} onClick={() => selectPatient(patient.full_name)}>{patient.full_name+'('+patient.phone+')'}</div>
+            <div className='autoComp-background' key={i} onClick={() => selectPatient(patient)}>{patient.full_name+'('+patient.phone+')'}</div>
             )} 
           </div>
           
-          <div className=' col-2'>  Age : <input type="text" name="age" className="form-control page" />   </div> 
-          <div className=' col-2'>  Gender : <input type="text" name="gender" className="form-control pgender" />  </div> 
-          <div className=' col-3'>  Phone No : <input type="text" name="phone" className="form-control pphone" /> </div>
+          <div className=' col-2'>  Age : <input type="text" value={age} className="form-control" /> </div> 
+          <div className=' col-2'>  Gender : <input type="text" value={gender} className="form-control" />  </div> 
+          <div className=' col-3'>  Phone No : <input type="text" value={phone} className="form-control" /> </div>
       </div>
     </>
   )

@@ -9,6 +9,8 @@ export default function InvestigationComp() {
 
     const [investigations, setInvestigations] = useState([]);
     const [text, setText] = useState('');
+    const [invId, setInvId] = useState('');
+    const [name, setName] = useState('');
 
     async function searchInvestigation(key)
     {
@@ -21,8 +23,9 @@ export default function InvestigationComp() {
     }
   
     const selectInvestigation = (key) => {
-      setText(key);
-      console.log('investigations',investigations);
+      setInvId(key.id);
+      setName(key.test_name);
+      
       setInvestigations([]);
     }
 
@@ -30,12 +33,12 @@ export default function InvestigationComp() {
   return (
     <>
         <InputGroup className="mb-3">
-            <Form.Control type="hidden" name="investigation_id" />
-            <Form.Control onChange={e => searchInvestigation(e.target.value) } value={text} placeholder='Investigation' />
+            <Form.Control type="hidden" name="investigation_id" value={invId} />
+            <Form.Control onChange={e => searchInvestigation(e.target.value) } value={name} placeholder='Investigation' />
             <Button className='btn btn-sm btn-default'>ADD</Button>
         </InputGroup>
         {investigations && investigations.map((inv, i) =>
-            <div key={i} onClick={() => selectInvestigation(inv.test_name)}>{inv.test_name}</div>
+            <div className='autoComp-background' key={i} onClick={() => selectInvestigation(inv)}>{inv.test_name}</div>
             )}
             <p id="investigationID"></p>
     </>

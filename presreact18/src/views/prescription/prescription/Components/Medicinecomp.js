@@ -28,7 +28,7 @@ export default function Medicinecomp() {
 
   return (
     <>
-        <div className='row mb-5'>
+        <div className='row mb-2'>
             <InputGroup>
               <Form.Control onChange={e => searchMedicine(e.target.value) } value={text} placeholder='Medicine Name' />
               <Form.Control name="dose" placeholder='Dose' />
@@ -39,7 +39,7 @@ export default function Medicinecomp() {
             
             </div>
             {medicines && medicines.map((med, i) =>
-              <div key={i} onClick={() => selectMedicine(med.name)}>{med.medicinetype.short_name+med.name+"("+med.strength.name+")"}</div>
+              <div className='autoComp-background' key={i} onClick={() => selectMedicine(med.name)}>{med.medicinetype.short_name+med.name+"("+med.strength.name+")"}</div>
             )}
     </>
   )

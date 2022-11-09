@@ -1,0 +1,11 @@
+.autoComp-background{
+    max-width: 300px;
+    border: 1px solid rgb(201, 192, 192);
+    border-radius: 5px;
+}
+
+.autoComp-background:hover {
+    background-color: rgb(181, 206, 202);
+    color: rgb(5, 24, 24);
+    cursor: pointer;
+}
