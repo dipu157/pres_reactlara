@@ -24,6 +24,31 @@ export default function NewPrescription() {
 
   const [data, setData] = useState([]);
 
+  const [pid,setPid] = useState("");
+  const [invid,setInvid] = useState([]);
+  const [advid,setAdvid] = useState([]);
+  const [medid,setMedid] = useState([]);
+
+  const [did,setDid] = useState("");
+  const [date,setDate] = useState("");
+  const [followUp,setFollowup] = useState("");
+  const [diagnosis,setDiagnosis] = useState("");
+  const [cc,setCC] = useState([]);
+
+  function savePrintPrescription(e)
+  {
+    e.preventDefault();
+
+    console.warn(pid,followUp);
+
+    // const formData = new FormData();
+    // formData.append('pid',pid);
+    // formData.append('did',1);
+    // formData.append('followUp',followUp);
+
+
+  }
+
   return (
     <>
       <div style={{ backgroundColor: '#F0FFFF' }} className='col-12 card'> 
@@ -34,7 +59,7 @@ export default function NewPrescription() {
 
       <button className='btn btn-default' onClick={() => setPatientModal(true)}>New Patient +</button> <br/>
 
-     <PatientComp />
+     <PatientComp pid={pid} setPid={setPid} />
 
       <div className="row mt-5">
           <div className='col-4 border-right'> 
@@ -50,27 +75,27 @@ export default function NewPrescription() {
 
 
               <p className='mt-5'>Investigation <button onClick={() => setInvestigationModal(true)} className='btn btn-sm'> + </button></p>
-              <InvestigationComp />
+              <InvestigationComp invid={invid} setInvid={setInvid} />
 
 
               <p className='mt-5'>Next Follow Up </p>
-              <input type='text' className="form-control mb-2" placeholder="Next Visiting Remark" name="follow-up" />
+              <input type='text'onChange={(e) => setFollowup(e.target.value)} className="form-control mb-2" placeholder="Next Visiting Remark" />
           </div>
 
           <div className='col-8'>
             <p style={{ fontSize: "26px" }}>Rx <button onClick={() => setMedicineModal(true)} className='btn btn-sm'> + </button> </p>
-            <Medicinecomp />
+            <Medicinecomp medid={medid} setMedid={setMedid} />
                 
 
             <span style={{ fontSize: "18px" }} className='mt-5'>Advice <button onClick={() => setAdviceModal(true)} className='btn btn-sm'> + </button></span>
-            <AdviceComp />
+            <AdviceComp advid={advid} setAdvid={setAdvid} />
           </div>
 
           <p id='advice'></p>
       
       </div>
 
-      <Button className='btn btn-block mb-3'>Save & Print</Button>
+      <Button onClick={(e) => savePrintPrescription(e)} className='btn btn-block mb-3'>Save & Print</Button>
       
       </div>
 

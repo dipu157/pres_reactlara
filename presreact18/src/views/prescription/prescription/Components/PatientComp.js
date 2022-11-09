@@ -4,11 +4,10 @@ import axios from 'axios'
 import CurrentDate from 'components/utils/CurrentDate';
 
 
-export default function PatientComp() {
+export default function PatientComp({pid,setPid}) {
 
     const [patients, setPatients] = useState([]);
     const [text, setText] = useState('');
-    const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [age, setAge] = useState('');
@@ -25,7 +24,7 @@ export default function PatientComp() {
     }
   
     const selectPatient = (a) => {
-      setId(a.id);
+      setPid(a.id);
       setName(a.full_name);
       setPhone(a.phone);
 
@@ -49,7 +48,7 @@ export default function PatientComp() {
   return (
     <>
          <div className="row mt-3">
-          <input type="hidden" value={id} name="id" className="form-control col-1 pid" />
+          <input type="hidden" value={pid} name="id" className="form-control col-1 pid" />
           
           <div className=' col-4'>  Patient Name : 
             <input type="text" className="form-control" placeholder='search by name,code,phone..' 

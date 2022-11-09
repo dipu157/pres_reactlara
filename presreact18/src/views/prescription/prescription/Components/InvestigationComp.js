@@ -5,7 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import axios from 'axios'
 
 
-export default function InvestigationComp() {
+export default function InvestigationComp({invid,setInvId}) {
 
     const [investigations, setInvestigations] = useState([]);
     const [text, setText] = useState('');
