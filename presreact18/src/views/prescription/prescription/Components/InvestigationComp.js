@@ -4,12 +4,12 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios'
 
-
-export default function InvestigationComp({invid,setInvId}) {
+let nextId = 0;
+export default function InvestigationComp({invid,setInvid,allinvids,setAllInvid}) {
 
     const [investigations, setInvestigations] = useState([]);
+    // const [investiga, setInvestiga] = useState([]);
     const [text, setText] = useState('');
-    const [invId, setInvId] = useState('');
     const [name, setName] = useState('');
 
     async function searchInvestigation(key)
@@ -23,7 +23,7 @@ export default function InvestigationComp({invid,setInvId}) {
     }
   
     const selectInvestigation = (key) => {
-      setInvId(key.id);
+      setInvid(key.id);
       setName(key.test_name);
       
       setInvestigations([]);
@@ -33,14 +33,21 @@ export default function InvestigationComp({invid,setInvId}) {
   return (
     <>
         <InputGroup className="mb-3">
-            <Form.Control type="hidden" name="investigation_id" value={invId} />
+            <Form.Control type="hidden" value={invid} />
             <Form.Control onChange={e => searchInvestigation(e.target.value) } value={name} placeholder='Investigation' />
-            <Button className='btn btn-sm btn-default'>ADD</Button>
+            <Button onClick={() => { setName(''); allinvids.push({id: invid,name: name,});}} 
+            className='btn btn-sm btn-default'>ADD</Button>
         </InputGroup>
         {investigations && investigations.map((inv, i) =>
             <div className='autoComp-background' key={i} onClick={() => selectInvestigation(inv)}>{inv.test_name}</div>
-            )}
-            <p id="investigationID"></p>
+        )}
+
+
+        <ul>
+        {allinvids.map(iinv => (
+          <li key={iinv.id}>{iinv.name}</li>
+        ))}
+      </ul>
     </>
   )
 }

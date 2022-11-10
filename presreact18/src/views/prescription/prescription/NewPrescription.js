@@ -25,9 +25,16 @@ export default function NewPrescription() {
   const [data, setData] = useState([]);
 
   const [pid,setPid] = useState("");
+
   const [invid,setInvid] = useState([]);
+  const [allinvids,setAllInvid] = useState([]);
+
   const [advid,setAdvid] = useState([]);
+  const [alladvids,setAllAdvid] = useState([]);
+
+
   const [medid,setMedid] = useState([]);
+  const [allmedids,setAllMedids] = useState([]);
 
   const [did,setDid] = useState("");
   const [date,setDate] = useState("");
@@ -39,7 +46,7 @@ export default function NewPrescription() {
   {
     e.preventDefault();
 
-    console.warn(pid,followUp);
+    console.warn(pid,followUp,allinvids,alladvids,allmedids);
 
     // const formData = new FormData();
     // formData.append('pid',pid);
@@ -75,7 +82,7 @@ export default function NewPrescription() {
 
 
               <p className='mt-5'>Investigation <button onClick={() => setInvestigationModal(true)} className='btn btn-sm'> + </button></p>
-              <InvestigationComp invid={invid} setInvid={setInvid} />
+              <InvestigationComp invid={invid} setInvid={setInvid} allinvids={allinvids} setAllInvid={setAllInvid} />
 
 
               <p className='mt-5'>Next Follow Up </p>
@@ -84,11 +91,11 @@ export default function NewPrescription() {
 
           <div className='col-8'>
             <p style={{ fontSize: "26px" }}>Rx <button onClick={() => setMedicineModal(true)} className='btn btn-sm'> + </button> </p>
-            <Medicinecomp medid={medid} setMedid={setMedid} />
+            <Medicinecomp medid={medid} setMedid={setMedid}  allmedids={allmedids} setAllMedids={setAllMedids} />
                 
 
             <span style={{ fontSize: "18px" }} className='mt-5'>Advice <button onClick={() => setAdviceModal(true)} className='btn btn-sm'> + </button></span>
-            <AdviceComp advid={advid} setAdvid={setAdvid} />
+            <AdviceComp advid={advid} setAdvid={setAdvid} alladvids ={alladvids} setAllAdvid={setAllAdvid} />
           </div>
 
           <p id='advice'></p>
@@ -104,6 +111,9 @@ export default function NewPrescription() {
       <DiagnosisModal show={showDiagnosisModal} setShow={setDiagnosisModal} />
       <InvestigationModal data={data} show={showInvestigationModal} setShow={setInvestigationModal} />
       <AdviceModal data={data} show={showAdviceModal} setShow={setAdviceModal} />
+
+
+      {/* <pre>{JSON.stringify(allmedids,null,2)}</pre> */}
     </>
   )
 }

@@ -4,7 +4,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios'
 
-export default function AdviceComp({advid,setAdvid}) {
+export default function AdviceComp({advid,setAdvid,alladvids,setAlladvid}) {
 
     const [advices, setAdvices] = useState([]);
     const [text, setText] = useState('');
@@ -31,13 +31,19 @@ export default function AdviceComp({advid,setAdvid}) {
   return (
     <>
         <InputGroup className="mt-5">
-              <Form.Control value={advid} placeholder='Advice' />
+              <Form.Control type='hidden' value={advid} placeholder='Advice' />
               <Form.Control onChange={e => searchAdvice(e.target.value) } value={advice} placeholder='Advice' />
-              <Button className='btn btn-sm btn-default'>ADD</Button>
+              <Button onClick={() => { setAdvice(''); alladvids.push({id: advid,name: advice,});}} className='btn btn-sm btn-default'>ADD</Button>
             </InputGroup>
             {advices && advices.map((inv, i) =>
               <div className='autoComp-background' key={i} onClick={() => selectAdvice(inv)}>{inv.general_advice}</div>
               )}
+
+      <ul>
+        {alladvids.map(iinv => (
+          <li key={iinv.id}>{iinv.name}</li>
+        ))}
+      </ul>
     </>
   )
 }
