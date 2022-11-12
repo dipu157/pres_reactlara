@@ -41,9 +41,9 @@ export default function Medicinecomp({medid,setMedid,allmedids,setAllMedids}) {
             <InputGroup>
               <Form.Control value={medid} type="hidden" />
               <Form.Control onChange={e => searchMedicine(e.target.value) } value={mtype+name+strength} placeholder='Medicine Name' />
-              <Form.Control onChange={(e) => setDose(e.target.value)} placeholder='Dose' />
-              <Form.Control onChange={e => setDuration(e.target.value)} placeholder='Duration' />
-              <Form.Control onChange={e => setMadvice(e.target.value)} placeholder='Instruction' />
+              <Form.Control onChange={(e) => setDose(e.target.value)} value={dose} placeholder='Dose' />
+              <Form.Control onChange={e => setDuration(e.target.value)} value={duration} placeholder='Duration' />
+              <Form.Control onChange={e => setMadvice(e.target.value)} value={madvice} placeholder='Instruction' />
               <Button onClick={() => { 
                                       setName(''); 
                                       setMType(''); 
