@@ -10,7 +10,6 @@ export default function Medicinecomp({medid,setMedid,allmedids,setAllMedids}) {
     const [dose, setDose] = useState([]);
     const [duration, setDuration] = useState([]);
     const [madvice, setMadvice] = useState([]);
-    const [text, setText] = useState('');
     const [name, setName] = useState('');
     const [strength, setStrength] = useState('');
     const [mtype, setMType] = useState('');
@@ -22,7 +21,7 @@ export default function Medicinecomp({medid,setMedid,allmedids,setAllMedids}) {
       matches = matches.data.result ;
       console.log('matches',matches);
       setMedicines(matches)
-      setText(key)
+      setName(key)
     }
   
     const selectMedicine = (key) => {
@@ -34,16 +33,22 @@ export default function Medicinecomp({medid,setMedid,allmedids,setAllMedids}) {
       setMedicines([]);
     }
 
+    const cancelMedicine = (key) => {
+      setAllMedids((current) =>
+      current.filter((iinv) => iinv.id !== key.id)
+    );
+    }
+
 
   return (
     <>
-        <div className='row mb-2'>
-            <InputGroup>
+        <div className='row'>
+            <InputGroup className='m-2'>
               <Form.Control value={medid} type="hidden" />
-              <Form.Control onChange={e => searchMedicine(e.target.value) } value={mtype+name+strength} placeholder='Medicine Name' />
-              <Form.Control onChange={(e) => setDose(e.target.value)} value={dose} placeholder='Dose' />
-              <Form.Control onChange={e => setDuration(e.target.value)} value={duration} placeholder='Duration' />
-              <Form.Control onChange={e => setMadvice(e.target.value)} value={madvice} placeholder='Instruction' />
+              <Form.Control style={{ width:"120px" }} onChange={e => searchMedicine(e.target.value) } value={mtype+name+strength} placeholder='Medicine Name' />
+              <Form.Control style={{ width:"40px" }} onChange={(e) => setDose(e.target.value)} value={dose} placeholder='Dose' />
+              <Form.Control style={{ width:"40px" }} onChange={e => setDuration(e.target.value)} value={duration} placeholder='Duration' />
+              <Form.Control style={{ width:"70px" }} onChange={e => setMadvice(e.target.value)} value={madvice} placeholder='Instruction' />
               <Button onClick={() => { 
                                       setName(''); 
                                       setMType(''); 
@@ -70,11 +75,17 @@ export default function Medicinecomp({medid,setMedid,allmedids,setAllMedids}) {
               <div className='autoComp-background' key={i} onClick={() => selectMedicine(med)}>{med.medicinetype.short_name+med.name+"("+med.strength.name+")"}</div>
             )}
 
-            <ul>
+            <table className='table table-striped'>
               {allmedids.map(iinv => (
-                <li key={iinv.id}>{iinv.mtype+iinv.name+iinv.strength+iinv.dose+iinv.duration+iinv.madvice}</li>
+                <tr key={iinv.id}>
+                  <td>{iinv.mtype +" "+ iinv.name+" "+"("+ iinv.strength+")"}</td>
+                  <td>{iinv.dose}</td>
+                  <td>{iinv.duration}</td>
+                  <td>{iinv.madvice}</td>
+                  <td onClick={() => cancelMedicine(iinv)} className='btn btn-sm btn-danger mt-2 p-2'>Cancel</td>
+                </tr>
               ))}
-            </ul>
+            </table>
     </>
   )
 }

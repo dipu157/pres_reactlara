@@ -4,10 +4,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios'
 
-export default function AdviceComp({advid,setAdvid,alladvids,setAlladvid}) {
+export default function AdviceComp({advid,setAdvid,alladvids,setAllAdvid}) {
 
     const [advices, setAdvices] = useState([]);
-    const [text, setText] = useState('');
     const [advice, setAdvice] = useState('');
 
     async function searchAdvice(key)
@@ -17,7 +16,7 @@ export default function AdviceComp({advid,setAdvid,alladvids,setAlladvid}) {
       matches = matches.data.result ;
       console.log('matches',matches);
       setAdvices(matches)
-      setText(key)
+      setAdvice(key)
     }
   
     const selectAdvice = (key) => {
@@ -25,25 +24,42 @@ export default function AdviceComp({advid,setAdvid,alladvids,setAlladvid}) {
       setAdvice(key.general_advice);
       setAdvices([]);
     }
+
+    const cancelAdvice = (key) => {
+      setAllAdvid((current) =>
+      current.filter((iinv) => iinv.id !== key.id)
+    );
+    }
    
       
 
   return (
     <>
-        <InputGroup className="mt-5">
+        <InputGroup className="mt-3">
               <Form.Control type='hidden' value={advid} placeholder='Advice' />
               <Form.Control onChange={e => searchAdvice(e.target.value) } value={advice} placeholder='Advice' />
-              <Button onClick={() => { setAdvice(''); alladvids.push({id: advid,name: advice,});}} className='btn btn-sm btn-default'>ADD</Button>
+              <Button onClick={() => { 
+                                  setAdvice(''); 
+                                  setAllAdvid(oldadv => [...oldadv,{
+                                    id: advid,
+                                    name: advice
+                                  }]);
+                                  }}
+                                  className='btn btn-sm btn-default'>ADD</Button>
             </InputGroup>
+            
             {advices && advices.map((inv, i) =>
               <div className='autoComp-background' key={i} onClick={() => selectAdvice(inv)}>{inv.general_advice}</div>
-              )}
+            )}
 
-      <ul>
+      <table className='table table-striped'>
         {alladvids.map(iinv => (
-          <li key={iinv.id}>{iinv.name}</li>
+          <tr key={iinv.id}>
+            <td>{iinv.name}</td>
+            <td onClick={() => cancelAdvice(iinv)} className='btn btn-sm btn-danger mt-2 p-2'>Cancel</td>
+          </tr>
         ))}
-      </ul>
+      </table>
     </>
   )
 }

@@ -64,7 +64,7 @@ class AppURL {
         return this.BaseURL + "/searchinvestigations/" + key;
     }
 
-    static PrescriptionList = this.BaseURL + "/allprescription"
+    static PrescriptionList = this.BaseURL + "/allPrescription"
     static PrescriptionAdd = this.BaseURL + "/createPrescription"
    
 }

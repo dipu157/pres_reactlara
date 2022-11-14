@@ -13,8 +13,14 @@ import OEModal from './Modal/OEModal';
 import CurrentDate from 'components/utils/CurrentDate';
 import axios from 'axios'
 import AppURL from 'api/AppURL';
+import MedicineModal from 'views/medicine/Modal/MedicineModal';
+import { Redirect } from 'react-router';
 
 export default function NewPrescription() {
+
+  if (!localStorage.getItem('token')) {
+    return <Redirect to="/login" />
+}
 
   const [showPatientModal, setPatientModal] = useState(false);
   const [showOEModal, setOEModal] = useState(false);
@@ -36,11 +42,9 @@ export default function NewPrescription() {
   const [medid, setMedid] = useState([]);
   const [allmedids, setAllMedids] = useState([]);
 
-  const [did, setDid] = useState("");
-  const [date, setDate] = useState("");
   const [followUp, setFollowup] = useState("");
   const [diagnosis, setDiagnosis] = useState("");
-  const [cc, setCC] = useState([]);
+  const [cc, setCC] = useState("");
 
   const [bp, setBP] = useState("");
   const [pulse, setPulse] = useState("");
@@ -57,37 +61,13 @@ export default function NewPrescription() {
   const [others5, setOther5] = useState("");
 
   let oeData = {
-    show: showOEModal,
-    setShow: setOEModal,
+    show: showOEModal, setShow: setOEModal,
 
-    bp: bp,
-    pulse: pulse,
-    temp: temp,
-    weight: weight,
-    spo2: spo2,
-    sugar: sugar,
-    past_history: past_history,
-    drug_history: drug_history,
-    others1: others1,
-    others2: others2,
-    others3: others3,
-    others4: others4,
-    others5: others5,
+    bp,pulse,temp, weight,spo2,sugar, past_history,drug_history,others1,others2,others3,
+    others4,others5,
 
-    setBP: setBP,
-    setPulse: setPulse,
-    setTemp: setTemp,
-    setBP: setBP,
-    setWeight: setWeight,
-    setSpo: setSpo,
-    setSugar: setSugar,
-    setPastHist: setPastHist,
-    setDrugHist: setDrugHist,
-    setOther1: setOther1,
-    setOther2: setOther2,
-    setOther3: setOther3,
-    setOther4: setOther4,
-    setOther5: setOther5,
+    setBP,setPulse,setTemp,setBP,setWeight,setSpo,setSugar,setPastHist,setDrugHist,
+    setOther1,setOther2,setOther3,setOther4,setOther5,
   }
 
   async function savePrintPrescription(e) {
@@ -97,39 +77,17 @@ export default function NewPrescription() {
       alladvids, allmedids, cc, diagnosis);
 
     const data = {
-      pid, 
-      did: 1,
-      bp, 
-      pulse, 
-      temp, 
-      weight, 
-      spo2, sugar, past_history, drug_history, followUp, allinvids,
-      alladvids, allmedids, cc, diagnosis, user_id :1
+      pid, did: 1, bp, pulse, temp,  weight, spo2, sugar, past_history, drug_history, 
+      followUp, allinvids,alladvids, allmedids, cc, diagnosis, user_id :1
     }
 
-    // const formData = new FormData();
-    // formData.append('pid',pid);
-    // formData.append('did',1);
-    // formData.append('bp',bp);
-    // formData.append('pulse',pulse);
-    // formData.append('temp',temp);
-    // formData.append('weight',weight);
-    // formData.append('spo2',spo2);
-    // formData.append('sugar',sugar);
-    // formData.append('past_history',past_history);
-    // formData.append('drug_history',drug_history);
-    // formData.append('allinvids',allinvids);
-    // formData.append('alladvids',alladvids);
-    // formData.append('allmedids',allmedids);
-    // formData.append('cc',cc);
-    // formData.append('diagnosis',diagnosis);
-    // formData.append('user_id',1);
-
     const result = await axios.post(AppURL.PrescriptionAdd, data, 
-      { headers: 
-        { 'Content-Type': 'application/json' }
+      { headers: { 'Content-Type': 'application/json' }
     });
 
+
+    alert("Save Successhully");
+    // window.location.reload();
 
 
   }
@@ -174,19 +132,22 @@ export default function NewPrescription() {
 
 
             <p className='mt-5'>Next Follow Up </p>
-            <input type='text' onChange={(e) => setFollowup(e.target.value)} className="form-control mb-2" placeholder="Next Visiting Remark" />
+            <input type='text' onChange={(e) => setFollowup(e.target.value)} value={followUp} className="form-control mb-2" placeholder="Next Visiting Remark" />
           </div>
 
           <div className='col-8'>
+            <div className='container medicine-div'>
             <p style={{ fontSize: "26px" }}>Rx <button onClick={() => setMedicineModal(true)} className='btn btn-sm'> + </button> </p>
             <Medicinecomp medid={medid} setMedid={setMedid} allmedids={allmedids} setAllMedids={setAllMedids} />
+            </div>
+            
 
-
-            <span style={{ fontSize: "18px" }} className='mt-5'>Advice <button onClick={() => setAdviceModal(true)} className='btn btn-sm'> + </button></span>
+            <div className='container advice-div'>
+            <span style={{ fontSize: "18px" }}>Advice <button onClick={() => setAdviceModal(true)} className='btn btn-sm'> + </button></span>
             <AdviceComp advid={advid} setAdvid={setAdvid} alladvids={alladvids} setAllAdvid={setAllAdvid} />
+            </div>
+            
           </div>
-
-          <p id='advice'></p>
 
         </div>
 
@@ -196,6 +157,7 @@ export default function NewPrescription() {
 
       <PatientModal data={data} show={showPatientModal} setShow={setPatientModal} />
       <InvestigationModal data={data} show={showInvestigationModal} setShow={setInvestigationModal} />
+      <MedicineModal data={data} show={showMedicineModal} setShow={setMedicineModal} />
       <AdviceModal data={data} show={showAdviceModal} setShow={setAdviceModal} />
       <OEModal {...oeData} />
 

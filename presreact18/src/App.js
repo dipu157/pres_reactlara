@@ -1,17 +1,33 @@
 import React, { Component } from 'react'
-import { BrowserRouter } from 'react-router-dom'
-import AppRoute from './route/AppRoute'
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import AppURL from 'api/AppURL';
+import AdminLayout from "layouts/Admin.js";
+import Login from "views/auth/Login";
+import axios from 'axios';
+import { useEffect , useState } from 'react';
 
-export class App extends Component {
-  render() {
-    return (
-      <>
+export default function App() {
+
+  const [user,setUser] = useState([]);
+
+  useEffect(() => {
+    axios.get(AppURL.UserData).then(response => {
+      setUser(response.data);
+    }).catch(error => {
+
+    });
+  }, [])
+
+
+  return (
+    <>
         <BrowserRouter>
-          <AppRoute />
+        <Switch>
+          <Route exact path="/" render={(props) => <Login user={user} setUser={setUser} />} />
+          <Route exact path="/login" render={(props) => <Login user={user} setUser={setUser} />} />
+          <Route path="/admin" render={(props) => <AdminLayout user={user} setUser={setUser} {...props} />} />
+        </Switch>
         </BrowserRouter>
       </>
-    )
-  }
+  )
 }
-
-export default App

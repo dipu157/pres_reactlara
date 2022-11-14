@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import { useLocation, Route, Switch } from "react-router-dom";
-
+import { Redirect } from 'react-router';
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Footer from "components/Footer/Footer";
 import Sidebar from "components/Sidebar/Sidebar";
-
 import routes from "routes.js";
 
-function Admin() {
+
+function Admin({user,setUser}) {
+
+
+  if (!localStorage.getItem('token')) {
+    return <Redirect to="/login" />
+  }
+
   const [color, setColor] = React.useState("black");
   const location = useLocation();
   const mainPanel = React.useRef(null);
@@ -44,7 +50,7 @@ function Admin() {
       <div className="wrapper">
         <Sidebar color={color} routes={routes} />
         <div className="main-panel" ref={mainPanel}>
-          <AdminNavbar />
+          <AdminNavbar user={user} setUser={setUser} />
           <div className="content">
             <Switch>{getRoutes(routes)}</Switch>
           </div>

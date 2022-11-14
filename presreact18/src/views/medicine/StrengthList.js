@@ -3,8 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { Card, Table, Container, Row, Col, Button } from "react-bootstrap";
 import axios  from 'axios';
 import Modal from 'react-bootstrap/Modal';
+import { Redirect } from 'react-router';
 
 export default function StrengthList() {
+
+  if (!localStorage.getItem('token')) {
+    return <Redirect to="/login" />
+}
 
   const [show, setShow] = useState(false);
 

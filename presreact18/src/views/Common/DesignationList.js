@@ -3,8 +3,14 @@ import React, { useEffect, useState } from 'react'
 import { Card, Table, Container, Row, Col, Button, Form } from "react-bootstrap";
 import axios  from 'axios';
 import Modal from 'react-bootstrap/Modal';
+import { Redirect } from 'react-router';
+
 
 export default function DesignationList() {
+
+  if (!localStorage.getItem('token')) {
+    return <Redirect to="/login" />
+}
 
   const [show, setShow] = useState(false);
 
@@ -41,6 +47,7 @@ export default function DesignationList() {
       body: formData
     });
     alert("Data Save Successfully");
+    window.location.reload();
   }
 
   return (

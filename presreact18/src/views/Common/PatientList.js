@@ -3,8 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { Card, Table, Container, Row, Col, Button, Form, Modal } from "react-bootstrap";
 import axios  from 'axios';
 import PatientModal from './Modal/PatientModal';
+import { Redirect } from 'react-router';
 
 export default function PatientList() {
+
+  if (!localStorage.getItem('token')) {
+    return <Redirect to="/login" />
+}
 
   const [showModal, setShowModal] = useState(false);
 

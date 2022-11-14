@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Prescription;
 use App\Http\Controllers\Controller;
 use App\Models\Medicine;
 use App\Models\Patient;
+use App\Models\Pres_Advice;
 use App\Models\Pres_Investigation;
 use App\Models\Pres_Medicine;
 use App\Models\Prescription;
@@ -13,11 +14,15 @@ use Illuminate\Http\Request;
 class PrescriptionController extends Controller
 {
 
+    public function allPrescription()
+    {
+        $prescription = Prescription::all();
+
+        return $prescription;
+    }
+
     public function newPrescription(Request $request)
     {
-       // dd($request->all());
-
-
         date_default_timezone_set("Asia/Dhaka");
         $date  =   date("Y-m-d");
 
@@ -26,8 +31,6 @@ class PrescriptionController extends Controller
         $medicines = $request->allmedids;
         $investigations = $request->allinvids;
         $advices = $request->alladvids;
-
-       // dd($investigations);
 
         $data = [
             'patient_id' => $request->pid,
@@ -39,15 +42,16 @@ class PrescriptionController extends Controller
             'weight'  => $request->weight,
             'spo2'  => $request->spo2,
             'sugar'  => $request->sugar,
-            'complain'  => $request->complain,
+            'complain'  => $request->cc,
             'diagnosis'  => $request->diagnosis,
             'past_history'  => $request->past_history,
             'drug_history'  => $request->drug_history,
-            'follow_up'  => $request->follow_up,
+            'follow_up'  => $request->followUp,
             'user_id' => $userID,
         ];
 
-        $prescriptionID = Prescription::insertGetId($data);
+        try{
+            $prescriptionID = Prescription::insertGetId($data);
 
         $invCollection = collect($investigations)->map(function ($inv) use ($prescriptionID,$userID) {
 
@@ -57,10 +61,10 @@ class PrescriptionController extends Controller
                                 'investigation' => $inv['name'],
                                 'user_id' => $userID
                     ];
-        });
+        })->toArray();
 
 
-        $Pres_Investigation = Pres_Investigation::insert($invCollection->toArray());
+        Pres_Investigation::insert($invCollection);
 
         $medCollection = collect($medicines)->map(function ($med) use ($prescriptionID,$userID) {
 
@@ -75,11 +79,30 @@ class PrescriptionController extends Controller
         })->toArray();
 
 
-        $Pres_Investigation = Pres_Medicine::insert($medCollection);
+        Pres_Medicine::insert($medCollection);
 
-       // $prescriptionID = $prescription->id();
+        $advCollection = collect($advices)->map(function ($adv) use ($prescriptionID,$userID) {
 
-       // return $prescriptionID;
+            return [
+                                'prescription_id' => $prescriptionID,
+                                'advice_id' => $adv['id'],
+                                'advice' => $adv['name'],
+                                'user_id' => $userID
+                    ];
+        })->toArray();
+
+        Pres_Advice::insert($advCollection);
+
+        return response([
+            'message' => "Successfully Added"
+        ],200); // States Code
+
+        }
+        catch(Exception $exception){
+            return response([
+                'message' => $exception->getMessage()
+            ],400);
+        }
 
 
         // if(is_array($investigations) || is_object($investigations)){

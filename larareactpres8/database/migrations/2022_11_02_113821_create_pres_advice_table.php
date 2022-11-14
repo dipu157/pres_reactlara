@@ -33,6 +33,6 @@ class CreatePresAdviceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pres__advice');
+        Schema::dropIfExists('pres_advice');
     }
 }

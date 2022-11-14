@@ -1,22 +1,28 @@
 import React, { Component } from "react";
-import { useLocation } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
 import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
+import face from "../../assets/img/new_logo.png"
 
 import routes from "routes.js";
 
-function Header() {
+function logout(e)
+{
+  e.preventDefault();
+
+  localStorage.clear();
+  window.location.reload();
+}
+
+function Header({user,setUser}) {
+
+  let name;
+  let email;
+  if (user) {
+      name = user.name;
+      email = user.email;
+  }
+
   const location = useLocation();
-  // const mobileSidebarToggle = (e) => {
-  //   e.preventDefault();
-  //   document.documentElement.classList.toggle("nav-open");
-  //   var node = document.createElement("div");
-  //   node.id = "bodyClick";
-  //   node.onclick = function () {
-  //     this.parentElement.removeChild(this);
-  //     document.documentElement.classList.toggle("nav-open");
-  //   };
-  //   document.body.appendChild(node);
-  // };
 
   const getBrandText = () => {
     for (let i = 0; i < routes.length; i++) {
@@ -24,21 +30,17 @@ function Header() {
         return routes[i].name;
       }
     }
-    return "Brand";
+    return "Prescription";
   };
+
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
         <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">
-          {/* <Button
-            variant="dark"
-            className="d-lg-none btn-fill d-flex justify-content-center align-items-center rounded-circle p-2"
-            onClick={mobileSidebarToggle}
-          >
-            <i className="fas fa-ellipsis-v"></i>
-          </Button> */}
+
           <Navbar.Brand
-            href="#home"
+            href="/home"
             onClick={(e) => e.preventDefault()}
             className="mr-2"
           >
@@ -51,20 +53,6 @@ function Header() {
           <span className="navbar-toggler-bar burger-lines"></span>
         </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="nav mr-auto" navbar>
-            <Nav.Item>
-              <Nav.Link
-                data-toggle="dropdown"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-                className="m-0"
-              >
-                <span className="d-lg-none ml-1">Dashboard</span>
-              </Nav.Link>
-            </Nav.Item>
-            
-            
-          </Nav>
           <Nav className="ml-auto" navbar>
             <Dropdown as={Nav.Item}>
               <Dropdown.Toggle
@@ -76,33 +64,28 @@ function Header() {
                 variant="default"
                 className="m-0"
               >
-                <span className="no-icon">Dropdown</span>
+                <img src={face} style={{ height:"30px", width:"30px" }} />
               </Dropdown.Toggle>
               <Dropdown.Menu aria-labelledby="navbarDropdownMenuLink">
-                <Dropdown.Item
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Action
-                </Dropdown.Item>
-                <div className="divider"></div>
-                <Dropdown.Item
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Separated link
-                </Dropdown.Item>
+              <Dropdown.Item href="#pablo" onClick={(e) => e.preventDefault()}>
+                  Update Profile
+              </Dropdown.Item>
+              <Dropdown.Item href="#pablo" onClick={(e) => e.preventDefault()}>
+                  Change Password
+              </Dropdown.Item>
+               <div className="divider"></div>
+               <Dropdown.Item onClick={logout}>
+                  Logout
+              </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+
             <Nav.Item>
-              <Nav.Link
-                className="m-0"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="no-icon">Log out</span>
+              <Nav.Link className="m-0">
+                <span>{name}</span>
               </Nav.Link>
             </Nav.Item>
+            
           </Nav>
         </Navbar.Collapse>
       </Container>
