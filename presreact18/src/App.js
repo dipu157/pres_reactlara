@@ -5,6 +5,7 @@ import AdminLayout from "layouts/Admin.js";
 import Login from "views/auth/Login";
 import axios from 'axios';
 import { useEffect , useState } from 'react';
+import ViewPrescription from 'views/prescription/prescription/ViewPrescription';
 
 export default function App() {
 
@@ -26,6 +27,7 @@ export default function App() {
           <Route exact path="/" render={(props) => <Login user={user} setUser={setUser} />} />
           <Route exact path="/login" render={(props) => <Login user={user} setUser={setUser} />} />
           <Route path="/admin" render={(props) => <AdminLayout user={user} setUser={setUser} {...props} />} />
+          <Route path="/viewpres/:id" render={(props) => <ViewPrescription user={user} setUser={setUser} {...props} />} />
         </Switch>
         </BrowserRouter>
       </>

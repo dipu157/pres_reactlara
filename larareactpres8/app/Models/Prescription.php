@@ -19,31 +19,9 @@ class Prescription extends Model
 
     protected $guarded = ['id', 'created_at','updated_at'];
 
-    protected $fillable = [
-    	'patient_id',
-        'doctor_id',
-        'date',
-        'bp',
-        'pulse',
-        'temp',
-        'weight',
-        'spo2',
-        'sugar',
-        'complain',
-        'diagnosis',
-        'past_history',
-        'drug_history',
-        'follow_up',
-        'others1',
-        'other2',
-        'others3',
-        'others4',
-        'others5',
-        'user_id',
-    ];
 
     // protected $with =['patient','doctor','pmedicine','pinvestigation','padvice'];
-    protected $with =['patient','doctor'];
+   // protected $with =['patient','doctor'];
 
     public function patient()
     {
@@ -55,19 +33,19 @@ class Prescription extends Model
     	return $this->belongsTo(Doctor::class, 'doctor_id','id');
     }
 
-    // public function pmedicine()
-    // {
-    //     return $this->belongsToMany(Pres_Medicine::class);
-    // }
+    public function pmedicines()
+    {
+        return $this->hasMany(Pres_Medicine::class);
+    }
 
-    // public function pinvestigation()
-    // {
-    //     return $this->hasMany(Pres_Investigation::class);
-    // }
+    public function pinvestigations()
+    {
+        return $this->hasMany(Pres_Investigation::class);
+    }
 
-    // public function padvice()
-    // {
-    //     return $this->hasMany(Pres_Advice::class);
-    // }
+    public function padvices()
+    {
+        return $this->hasMany(Pres_Advice::class);
+    }
 
 }

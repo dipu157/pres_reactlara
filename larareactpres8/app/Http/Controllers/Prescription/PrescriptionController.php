@@ -16,7 +16,9 @@ class PrescriptionController extends Controller
 
     public function allPrescription()
     {
-        $prescription = Prescription::all();
+       // $prescription = Prescription::all();
+
+        $prescription = Prescription::with(['patient','doctor','pmedicines', 'pinvestigations', 'padvices'])->get();
 
         return $prescription;
     }
