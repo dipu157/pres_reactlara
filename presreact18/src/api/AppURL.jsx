@@ -66,6 +66,9 @@ class AppURL {
 
     static PrescriptionList = this.BaseURL + "/allPrescription"
     static PrescriptionAdd = this.BaseURL + "/createPrescription"
+    static PrescriptionId(id) {
+        return this.BaseURL + "/prescriptionByPatient/" + id;
+    }
    
 }
 

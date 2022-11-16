@@ -114,3 +114,4 @@ Route::get('/user',[UserController::class, 'User']);
 
  Route::post('/createPrescription',[PrescriptionController::class, 'newPrescription']);
  Route::get('/allPrescription',[PrescriptionController::class, 'allPrescription']);
+ Route::get('/prescriptionByPatient/{id}',[PrescriptionController::class, 'prescriptionByPatientId']);

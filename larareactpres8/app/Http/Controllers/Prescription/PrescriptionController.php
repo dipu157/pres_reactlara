@@ -23,6 +23,17 @@ class PrescriptionController extends Controller
         return $prescription;
     }
 
+    public function prescriptionByPatientId(Request $request)
+    {
+        $id = $request->id;
+
+        $prescription = Prescription::where('id',$id)
+                        ->with(['patient','doctor','pmedicines', 'pinvestigations', 'padvices'])
+                        ->first();
+
+        return $prescription;
+    }
+
     public function newPrescription(Request $request)
     {
         date_default_timezone_set("Asia/Dhaka");
