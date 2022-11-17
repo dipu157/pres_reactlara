@@ -20,27 +20,39 @@ export default function ViewPrescription() {
         .catch((error) => {});
     }, []);
 
+    function printDiv(divName) {
+      var printContents = document.getElementById(divName).innerHTML;
+      var originalContents = document.body.innerHTML;
+ 
+      document.body.innerHTML = printContents;
+ 
+      window.print();
+ 
+      document.body.innerHTML = originalContents;
+ }
+
 
   return (
-    <div className='container mt-3'>
+    <>
 
+      <div id="printableArea" className='container border-bottom'>
       <div className="row">
         <DoctorDetailsComp />
       </div>
 
       <div className="row mt-2">
-          {/* <div className=' col-4'>  Patient Name : {prescriptions.patient.full_name}</div>
-          <div className=' col-2'>  Age :  {prescriptions.patient.dob}</div> 
-          <div className=' col-2'>  Gender :  {prescriptions.patient.gender}</div> 
-          <div className=' col-3'>  Phone No : {prescriptions.patient.phone}</div> */}
+          <div className=' col-4'> <b>Patient Name :</b>  {prescriptions.patient?.full_name}</div>
+          <div className=' col-2'>  <b>Age :</b>  {prescriptions.patient?.dob}</div> 
+          <div className=' col-2'>  <b>Gender :</b>  {prescriptions.patient?.gender}</div> 
+          <div className=' col-3'>  <b>Phone No :</b> {prescriptions.patient?.phone}</div>
       </div>
 
       <div className="row mt-5">
           <div className='col-4 border-right'>
-            <span>Chief Complain : </span> <br />
+            <span className='view_pres_title'>Chief Complain :</span> <br />
             {prescriptions.complain}
 
-            <p className='mt-5'>On Examination</p>
+            <p className='mt-5 view_pres_title'>On Examination</p>
             <div>
               {prescriptions.bp && <p>BP : {prescriptions.bp} </p>}
               {prescriptions.pulse && <p>Pulse : {prescriptions.pulse} </p>}
@@ -53,20 +65,20 @@ export default function ViewPrescription() {
             </div>
 
 
-            <p className='mt-5'>Diagnosis</p>
+            <p className='mt-5 view_pres_title'>Diagnosis</p>
             {prescriptions.diagnosis}
 
 
 
-            <p className='mt-5'>Investigation</p>
+            <p className='mt-5 view_pres_title'>Investigation</p>
             <div className='row'>
-            {prescriptions.pinvestigations.map((inv, i) => 
+            {prescriptions.pinvestigations?.map((inv, i) => 
                 inv.investigation.test_name
             ).join(", ")}
             </div>
 
 
-            <p className='mt-5'>Next Follow Up </p>
+            <p className='mt-5 view_pres_title'>Next Follow Up </p>
             {prescriptions.follow_up}
           </div>
 
@@ -76,8 +88,8 @@ export default function ViewPrescription() {
             <div className='row'>
               <table className='table table-striped'>
                 <tbody>
-                {prescriptions.pmedicines.map(med => (
-                  <tr>
+                {prescriptions.pmedicines?.map(med => (
+                  <tr key={med.id}>
                   <td>{med.medicine.medicinetype.short_name +" "+ med.medicine.name+" "+"("+ med.medicine.strength.name +")"}</td>
                   <td>{med.dose}</td>
                   <td>{med.duration}</td>
@@ -91,13 +103,13 @@ export default function ViewPrescription() {
             
 
             <div className='container advice-div'>
-            <span style={{ fontSize: "18px" }}>Advice </span>
+            <span className='view_pres_title'>Advice </span>
             <div className='row'>
               <table className='table table-striped'>
                 <tbody>
-                {prescriptions.padvices.map(iinv => (
-                  <tr>
-                    <td>{iinv.name}</td>
+                {prescriptions.padvices?.map(iinv => (
+                  <tr key={iinv.id}>
+                    <td>{iinv.advice.general_advice}</td>
                   </tr>
                 ))}
                 </tbody>
@@ -107,13 +119,15 @@ export default function ViewPrescription() {
             
           </div>
 
-        </div>
+      </div>
+      </div>
         
 
-        <Button onClick={() => {window.print()}} >Print </Button>
+        {/* <Button onClick={() => {window.print()}} >Print </Button> */}
+        <Button  onClick={() => printDiv('printableArea')} className='btn btn-block mb-3'>Print</Button>
 
         {/* {JSON.stringify(params,null,2)} */}
         {/* <pre>{JSON.stringify(prescriptions,null,2)}</pre> */}
-    </div>
+    </>
   )
 }

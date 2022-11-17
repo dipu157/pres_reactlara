@@ -14,13 +14,15 @@ import CurrentDate from 'components/utils/CurrentDate';
 import axios from 'axios'
 import AppURL from 'api/AppURL';
 import MedicineModal from 'views/medicine/Modal/MedicineModal';
-import { Redirect } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 
 export default function NewPrescription() {
 
   if (!localStorage.getItem('token')) {
     return <Redirect to="/login" />
 }
+
+let history = useHistory();
 
   const [showPatientModal, setPatientModal] = useState(false);
   const [showOEModal, setOEModal] = useState(false);
@@ -29,6 +31,7 @@ export default function NewPrescription() {
   const [showMedicineModal, setMedicineModal] = useState(false);
 
   const [data, setData] = useState([]);
+  const [prescription, setPrescription] = useState([]);
 
   const [pid, setPid] = useState("");
 
@@ -82,11 +85,17 @@ export default function NewPrescription() {
     }
 
     const result = await axios.post(AppURL.PrescriptionAdd, data, 
-      { headers: { 'Content-Type': 'application/json' }
-    });
+      { headers: { 'Content-Type': 'application/json' }}
+      ).then(response => {
+        setPrescription(response.data.prescriptionId);
+      }).catch(error => {
+        alert(error);
+      });
 
 
-    alert("Save Successhully");
+    // console.warn(prescription);
+
+     history.push(`/viewpres/${prescription}`);
     // window.location.reload();
 
 
@@ -162,7 +171,7 @@ export default function NewPrescription() {
       <OEModal {...oeData} />
 
 
-      {/* <pre>{JSON.stringify(allmedids,null,2)}</pre> */}
+      {/* <pre>{JSON.stringify(prescription,null,2)}</pre> */}
     </>
   )
 }

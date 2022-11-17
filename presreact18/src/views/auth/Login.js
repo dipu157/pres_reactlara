@@ -26,6 +26,7 @@ export default function Login({user,setUser}) {
       setLoggedIn(true);
       setUser(response.data.user);
     }).catch(error => {
+      alert(error);
     });
   }
 
@@ -46,7 +47,7 @@ export default function Login({user,setUser}) {
 
               <Row className='text-center'>
                 <Col className='d-flex justify-content-center' lg={6} md={6} sm={12} xs={12}>
-
+                { message && <h3 className="error"> { message } </h3> }
                   <Form className="onboardForm">
                     <h4 className="section-title-login"> SING IN TO THE PRESCRIPTION</h4>
                     <input className='form-control m-2' type="email"
@@ -67,6 +68,7 @@ export default function Login({user,setUser}) {
               </Row>
             </Col>
           </Row>
+          {/* {JSON.stringify(message,null,2)} */}
         </Container>
     </div>
   )

@@ -107,7 +107,8 @@ class PrescriptionController extends Controller
         Pres_Advice::insert($advCollection);
 
         return response([
-            'message' => "Successfully Added"
+            'message' => "Successfully Added",
+            'prescriptionId' => $prescriptionID
         ],200); // States Code
 
         }
@@ -116,27 +117,6 @@ class PrescriptionController extends Controller
                 'message' => $exception->getMessage()
             ],400);
         }
-
-
-        // if(is_array($investigations) || is_object($investigations)){
-
-        //    // dd($investigations);
-        //     foreach($investigations as $row){
-        //         if(!empty($row)){
-        //             //dd($investigations);
-        //             $investigation = [
-        //                 'prescription_id' => $prescriptionID,
-        //                 'investigation_id' => $row->id,
-        //                 'investigation' => $row->name,
-        //                 'user_id' => $userID
-        //             ];
-
-        //             $pres_medicineInsert = Pres_Medicine::create($investigation);
-        //         }
-        //     }
-        // }
-
-
 
     }
 }
